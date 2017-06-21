@@ -38,3 +38,19 @@ var question = {
     answer: ''
 }
 
+var user = {
+    // Database info
+    _id: this._id,
+    createdAt: Date,
+    updatedAt: Date,
+
+    // Authentication info
+
+    // Content
+    name: '',
+    type: '' // Student, Teacher, Admin, etc. Again, just a set amount.
+
+    // Insert other content in here, age, grade, medical records? Etc?
+    
+    // Profile for user to link user with their students and class or as student; link them with their notes
+}
