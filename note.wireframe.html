@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your notes</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- creates the google tab icon -->
+    <link rel="icon" href="https://previews.123rf.com/images/tigatelu/tigatelu1311/tigatelu131100121/23848471-Cute-corn-cartoon-character-Stock-Vector-cob.jpg"
+        sizes="32x32">
+</head>
+<style>
+    #relation-img {
+        max-height: 200px;
+        max-width: 200px;
+    }
+    /*body{background-color: black}*/
+
+    .text-shadow {
+        text-shadow: -.5px -.5px 0 #000,
+        .5px -.5px 0 #000,
+        -.5px .5px 0 #000,
+        .5px .5px 0 #000;
+    }
+
+    .input-box z-depth-2 {
+        /*box-sizing: border-box;
+        border: 2px solid gray;
+        border-radius: 5px;*/
+        padding: 10px;
+    }
+
+    .noteCard {
+        margin-left: 15px;
+        /*max-height: 200px;*/
+    }
+
+    div > div.card-image {
+        max-height:150px;
+    }
+</style>
+
+<body>
+    <!--slide nav-->
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="userView">
+                <div class="background">
+                    <img style="width:300px; height:250px" src="https://t3.ftcdn.net/jpg/01/04/53/12/240_F_104531214_sYh7NtYPbtT5Zy1uDfvMObA1yRfwMvK5.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="http://static2.fjcdn.com/comments/Every+picture+this+guy+is+in+looks+like+he+s+in+_4996f31786d0fcb7417ede5e2fea4244.jpg"></a>
+                <a href="#!name"><span class="white-text name textShadow">John Doe</span></a>
+                <a href="#!email"><span class="white-text email textShadow">jdandturk@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+
+
+    <!--Content-->
+    <div class="row">
+        <div class="col s12 m9 l10">
+            <h2 class="header">Recent Notes</h2>
+            <hr>
+            <!-- try for 4 + on website two on mobile -->
+            <!--most recently edited 4 -->
+            <div class="section scrollspy" id="recent-notes-box">
+                <div class="row">
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title text-shadow">Header - Subheader</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s6 m3 noteCard">
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <h2 class="header">Your Notes</h2>
+            <hr>
+            <!--All -->
+            <div class="section scrollspy" id="all-notes-box">
+                <div class="row">
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s6 m3 noteCard">
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s6 m3 noteCard">
+
+                        <div class="card small">
+                            <div class="card-image">
+                                <img src="https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+        </div>
+
+
+
+
+        <!--added because i thought it looked cool-->
+        <div class="col hide-on-small-only m3 l2">
+            <div class="toc-wrapper pinned" style="top: 40px;">
+                <a href="#" data-activates="slide-out" class="button-collapse btn"><i class="material-icons">menu</i></a>
+
+                <div style="height: 1px;">
+
+                    <ul class="section table-of-contents">
+                        <li><a href="#recent-notes-box">Recent Notes</a></li>
+                        <li><a href="#all-notes-box">All Notes</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer cyan">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class=" grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script language="JavaScript">
+        // would need this for all textboxes according to docs, but seems to work without it
+
+        $(document).ready(function () {
+            // $('#elaboration-a"').val('New Text');
+            // $('#elaboration-a"').trigger('autoresize');
+            $('.scrollspy').scrollSpy();
+            $(".button-collapse").sideNav();
+        });
+    </script>
+</body>
+
+</html>
