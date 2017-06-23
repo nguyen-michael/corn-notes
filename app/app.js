@@ -5,4 +5,4 @@ const ReactDOM = require("react-dom");
 const MainComponent = require("./components/Main.js");
 
 // Rendering of the application
-ReactDOM.render(<MainComponent />, document.getElementById("app"));
+ReactDOM.render(<div><MainComponent /></div>, document.getElementById("app"));
