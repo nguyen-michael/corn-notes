@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Place Holding. React Testing is below the Footer.-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wire Frame</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <!-- creates the google tab icon -->
+    <link rel="icon" href="https://previews.123rf.com/images/tigatelu/tigatelu1311/tigatelu131100121/23848471-Cute-corn-cartoon-character-Stock-Vector-cob.jpg"
+        sizes="32x32">
+</head>
+<style>
+    #relation-img {
+        max-height: 200px;
+        max-width: 200px;
+    }
+    /*body{background-color: black}*/
+
+    
+    .textShadow {
+        text-shadow: -.5px -.5px 0 #000,
+        .5px -.5px 0 #000,
+        -.5px .5px 0 #000,
+        .5px .5px 0 #000;
+    }
+
+    .input-box z-depth-2 {
+        /*box-sizing: border-box;
+        border: 2px solid gray;
+        border-radius: 5px;*/
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <!--slide nav-->
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="userView">
+                <div class="background">
+                    <img style="width:300px; height:250px" src="https://t3.ftcdn.net/jpg/01/04/53/12/240_F_104531214_sYh7NtYPbtT5Zy1uDfvMObA1yRfwMvK5.jpg">
+                </div>
+                <a href="#!user"><img class="circle" src="http://static2.fjcdn.com/comments/Every+picture+this+guy+is+in+looks+like+he+s+in+_4996f31786d0fcb7417ede5e2fea4244.jpg"></a>
+                <a href="#!name"><span class="white-text name textShadow">John Doe</span></a>
+                <a href="#!email"><span class="white-text email textShadow">jdandturk@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+
+    <!--top-->
+
+    <div class="row">
+        <div class="col s12 m9 l10">
+
+            <div class="section scrollspy" id="top-box">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="col s4 m3">
+                                <img id="relation-img" class="responsive-img circle" src="https://www.colourbox.com/preview/8299754-cute-corn-cartoon-character.jpg"
+                                    alt="">
+                            </div>
+                            <div class="col s8 m5">
+                                <div class="input-field">
+                                    <input id="topic_name" type="text" class="validate">
+                                    <label for="topic_name">Topic Name</label>
+                                </div>
+                                <div class="input-field">
+                                    <input id="subtopic_name" type="text" class="validate">
+                                    <label for="subtopic_name">Subtopic Name</label>
+                                </div>
+                            </div>
+                            <div class="col s12 m4">
+                                <div class="input-field">
+                                    <input id="name" type="text" class="validate">
+                                    <label for="name">Name</label>
+                                </div>
+                                <div class="input-field">
+                                    <input id="month" type="text" class="validate">
+                                    <label for="month">Month</label>
+                                </div>
+                                <div class="row">
+
+                                    <div class="input-field col s10">
+                                        <input id="class" type="text" class="validate">
+                                        <label for="class">Class</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input id="A" type="text" class="validate">
+                                        <label for="A">A</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="section scrollspy" id="main-box">
+                <!-- Elaboration-->
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s5 input-box z-depth-2">
+                                <textarea id="elaboration-q" class="materialize-textarea"></textarea>
+                                <label for="elaboration-q">Elaboration</label>
+                            </div>
+                            <div class="input-field col s6 offset-s1 input-box z-depth-2">
+                                <textarea id="elaboration-a" class="materialize-textarea"></textarea>
+                                <label for="elaboration-a">Elaboration Answers</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Distinction-->
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s5 input-box z-depth-2">
+                                <textarea id="distinction-q" class="materialize-textarea"></textarea>
+                                <label for="distinction-q">Distinction</label>
+                            </div>
+                            <div class="input-field col s6 offset-s1 input-box z-depth-2">
+                                <textarea id="distinction-a" class="materialize-textarea"></textarea>
+                                <label for="distinction-a">Distinction Answers</label>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- Relation-->
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s5 input-box z-depth-2">
+                                <textarea id="relation-q" class="materialize-textarea"></textarea>
+                                <label for="relation-q">Relation</label>
+                            </div>
+                            <div class="input-field col s6 offset-s1 input-box z-depth-2">
+                                <textarea id="relation-a" class="materialize-textarea"></textarea>
+                                <label for="relation-a">Relation Answers</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Example-->
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s5 input-box z-depth-2">
+                                <textarea id="example-q" class="materialize-textarea"></textarea>
+                                <label for="example-q">Example</label>
+                            </div>
+                            <div class="input-field col s6 offset-s1 input-box z-depth-2">
+                                <textarea id="example-a" class="materialize-textarea"></textarea>
+                                <label for="example-a">Example Answers</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="section scrollspy" id="bottom-box">
+                <div class="row">
+
+                    <div class="row">
+                        <div class="col s3">
+                            <img id="relation-img" src="https://www.colourbox.com/preview/8299754-cute-corn-cartoon-character.jpg"
+                                alt="">
+                        </div>
+                        <div class="col s5">
+                            <div class="input-box z-depth-2">
+
+
+                                <div class="input-field">
+                                    <textarea id="summary" class="materialize-textarea"></textarea>
+                                    <label for="summary">Summary</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s4">
+                            <div class="row center-align"><a class="waves-effect waves-light btn ">Submit</a></div>
+                            <div class="row center-align"><a class="waves-effect waves-light btn ">Download</a></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--added because i thought it looked cool-->
+        <div class="col hide-on-small-only m3 l2">
+            <div class="toc-wrapper pinned" style="top: 0px;">
+                <a href="#" data-activates="slide-out" class="button-collapse btn"><i class="material-icons">menu</i></a>
+
+                <div style="height: 1px;">
+
+                    <ul class="section table-of-contents">
+                        <li><a href="#top-box">Top</a></li>
+                        <li><a href="#main-box">Main</a></li>
+                        <li><a href="#bottom-box">Bottom</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer cyan">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class=" grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- React Test-->
+
+    <div id="app"></div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script language="JavaScript">
+        // would need this for all textboxes according to docs, but seems to work without it
+
+        $(document).ready(function () {
+            // $('#elaboration-a"').val('New Text');
+            // $('#elaboration-a"').trigger('autoresize');
+            $('.scrollspy').scrollSpy();
+            $(".button-collapse").sideNav();
+        });
+    </script>
+</body>
+
+</html>
