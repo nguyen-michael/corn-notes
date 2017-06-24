@@ -14,18 +14,18 @@ var app = express();
 
 // express app configuration
 app.use(bodyParser.urlencoded({
-	extended: false
+    extended: false
 }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(routes);
 
 // Confirm DB connection
-db.once("open", function(){
+db.once("open", function () {
     console.log("Database Connected!");
 });
 
 // Start the server and listen for requests
-app.listen(port, function(){
+app.listen(port, function () {
     console.log("Get Studyin', punk: Port ", port);
 });

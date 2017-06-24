@@ -1,5 +1,7 @@
-import {React, Component} from "react";
+import React, {Component} from "react";
 
+
+// Testing component, take away or reuse or whater.
 class Main extends Component {
     constructor(props) {
         // Passes any props to the superclass, the constructor that generates this Main class. 
