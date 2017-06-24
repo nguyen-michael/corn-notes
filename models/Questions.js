@@ -1,4 +1,7 @@
-import mongoose, {Schema, model} from 'mongoose';
+// import mongoose, {Schema, model} from 'mongoose';
+
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema
 
 const QuestionSchema = new Schema({
     createdAt: {
@@ -23,6 +26,8 @@ const QuestionSchema = new Schema({
     }
 });
 
-var Question = model("Question", QuestionSchema);
+var Question = mongoose.model("Question", QuestionSchema);
 
-export default Question;
+// export default Question;
+
+module.exports = Question;

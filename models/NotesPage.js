@@ -1,4 +1,7 @@
-import mongoose, {Schema, model} from 'mongoose';
+// import mongoose, {Schema, model} from 'mongoose';
+
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema
 
 const NotesPageSchema = new Schema({
     createdAt: {
@@ -36,6 +39,7 @@ const NotesPageSchema = new Schema({
     }]
 });
 
-var NotesPage = model("NotesPage", NotesPageSchema);
+var NotesPage = mongoose.model("NotesPage", NotesPageSchema);
 
-export default NotesPage;
+// export default NotesPage;
+module.exports = NotesPage;
