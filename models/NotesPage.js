@@ -30,7 +30,8 @@ const NotesPageSchema = new Schema({
         default: ""
     },
     externalAssets: {
-        type: [String]
+        type: [String],
+        default: []
     },
     // Questions to populate the query as needed.
     questions: [{
