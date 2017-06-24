@@ -2,6 +2,8 @@
     MNN: Proposing a schema for data flow from students and teachers back and forth.
     Inspired by RESTful APIS, probably returning BSON using MONGO as a backend.
     This way the Teacher, when logged in can get updates on what the students are writing or to view their notes etc.
+
+    NOTE: 6/23/2017, Updating the schema with more forethought. Check the models folder.
     
 */
 
