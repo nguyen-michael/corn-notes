@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import NotePage from './common/NotePage';
+import Footer from './common/footer'
 
 
 // Testing component, take away or reuse or whater.
@@ -11,8 +13,8 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <h1>Hello</h1>
-                <p>Goodnight</p>
+                <NotePage />
+                <Footer />
             </div>
         );
     }
