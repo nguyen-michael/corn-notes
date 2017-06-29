@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Wire Frame</title>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
@@ -21,7 +21,6 @@
     }
     /*body{background-color: black}*/
 
-    
     .textShadow {
         text-shadow: -.5px -.5px 0 #000,
         .5px -.5px 0 #000,
@@ -29,11 +28,39 @@
         .5px .5px 0 #000;
     }
 
-    .input-box z-depth-2 {
+    #elaboration-box{
+        padding-bottom:10px;
+    }
+    div.z-depth-2.col.s6.offset-s1 {
         /*box-sizing: border-box;
         border: 2px solid gray;
         border-radius: 5px;*/
         padding: 10px;
+    }
+
+    div.z-depth-2.col.s6.offset-s1>div.input-field.z-depth-1 {
+        /*box-sizing: border-box;
+        border: 2px solid gray;
+        border-radius: 5px;*/
+        padding: 10px;
+    }
+
+    div.z-depth-2.col.s5>div.input-field.z-depth-1 {
+        /*box-sizing: border-box;
+        border: 2px solid gray;
+        border-radius: 5px;*/
+        padding: 10px;
+    }
+
+    div.z-depth-2.col.s5 {
+        /*box-sizing: border-box;
+        border: 2px solid gray;
+        border-radius: 5px;*/
+        padding: 10px;
+    }
+
+    div.row.center-align{
+        margin-bottom:0px;
     }
 </style>
 
@@ -59,11 +86,11 @@
         <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
     </ul>
 
-    <!--top-->
+ 
 
     <div class="row">
         <div class="col s12 m9 l10">
-
+   <!--top-->
             <div class="section scrollspy" id="top-box">
                 <div class="row">
                     <form class="col s12">
@@ -93,11 +120,11 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="input-field col s10">
+                                    <div class="input-field col s10 input-box">
                                         <input id="class" type="text" class="validate">
                                         <label for="class">Class</label>
                                     </div>
-                                    <div class="input-field col s2">
+                                    <div class="input-field col s2 input-box" id="test">
                                         <input id="A" type="text" class="validate">
                                         <label for="A">A</label>
                                     </div>
@@ -108,20 +135,39 @@
                 </div>
 
             </div>
-
             <hr>
+
+
             <div class="section scrollspy" id="main-box">
                 <!-- Elaboration-->
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s5 input-box z-depth-2">
-                                <textarea id="elaboration-q" class="materialize-textarea"></textarea>
-                                <label for="elaboration-q">Elaboration</label>
+                <div class="row" id="elaboration-box">
+                    <form class="col s12 z-depth-2">
+                        <div class="row center-align">
+                            <h5>Elaboration
+                                <a class="btn-floating btn-large waves-effect waves-light red right "><i class=" material-icons">note_add</i></a>
+                            </h5>
+                            <hr>
+                        </div>
+                        <div class="row center-align">
+                            <div class="col s5">
+                                <div class="input-field z-depth-1">
+                                    <textarea id="elaboration-z1" class="materialize-textarea"></textarea>
+                                    <label for="elaboration-z1">Question 1</label>
+                                </div>
+                                <div class="input-field z-depth-1">
+                                    <textarea id="elaboration-z2" class="materialize-textarea"></textarea>
+                                    <label for="elaboration-z2">Question 2</label>
+                                </div>
                             </div>
-                            <div class="input-field col s6 offset-s1 input-box z-depth-2">
-                                <textarea id="elaboration-a" class="materialize-textarea"></textarea>
-                                <label for="elaboration-a">Elaboration Answers</label>
+                            <div class="col s7">
+                                <div class="input-field z-depth-1">
+                                    <textarea id="elaboration-x1" class="materialize-textarea"></textarea>
+                                    <label for="elaboration-x1">Answer 1</label>
+                                </div>
+                                <div class="input-field z-depth-1">
+                                    <textarea id="elaboration-x2" class="materialize-textarea"></textarea>
+                                    <label for="elaboration-x2">Answer 2</label>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -179,8 +225,7 @@
 
                     <div class="row">
                         <div class="col s3">
-                            <img id="relation-img" src="https://www.colourbox.com/preview/8299754-cute-corn-cartoon-character.jpg"
-                                alt="">
+                            <img id="relation-img" src="https://www.colourbox.com/preview/8299754-cute-corn-cartoon-character.jpg" alt="">
                         </div>
                         <div class="col s5">
                             <div class="input-box z-depth-2">
@@ -204,7 +249,7 @@
         </div>
         <!--added because i thought it looked cool-->
         <div class="col hide-on-small-only m3 l2">
-            <div class="toc-wrapper pinned" style="top: 0px;">
+            <div class="toc-wrapper pinned" style="top: 25px;">
                 <a href="#" data-activates="slide-out" class="button-collapse btn"><i class="material-icons">menu</i></a>
 
                 <div style="height: 1px;">
@@ -213,6 +258,18 @@
                         <li><a href="#top-box">Top</a></li>
                         <li><a href="#main-box">Main</a></li>
                         <li><a href="#bottom-box">Bottom</a></li>
+                    </ul>
+                </div>
+
+                <div class="fixed-action-btn horizontal">
+                    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+                    <ul>
+                        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                        <li><a class="btn-floating blue button-collapse" data-activates="slide-out"><i class="material-icons">menu</i></a></li>
                     </ul>
                 </div>
             </div>

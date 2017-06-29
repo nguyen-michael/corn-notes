@@ -1,7 +1,7 @@
 import React, {Component} from "react";
+// add component for input fields
+// have a button add a new input field
 
-
-// Testing component, take away or reuse or whater.
 class QABox extends Component {
     constructor(props) {
         // Passes any props to the superclass, the constructor that generates this Main class. 
@@ -10,8 +10,8 @@ class QABox extends Component {
 
     render() {
         return (
-              <div className="row" id="elaboration-box">
-                    <form className="col s12 z-depth-2">
+              <div className="row" id="elaboration-box" >
+                    <form className="col s12 z-depth-2"style={styles.bigBox}>
                         <div className="row center-align">
                             <h5>{this.props.boxName}
                                 <a className="btn-floating btn-large waves-effect waves-light red right ">
@@ -48,5 +48,11 @@ class QABox extends Component {
         );
     }
 }
+const styles = {
+    bigBox: {
+        backgroundColor: "white"
+    }
+};
+
 
 module.exports = QABox;
