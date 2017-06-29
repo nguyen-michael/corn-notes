@@ -1,5 +1,3 @@
-// import mongoose, {Schema, model} from 'mongoose';
-
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema
 
@@ -12,9 +10,11 @@ const QuestionSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    // Elaboration, Distinction, Relation, Example are valid question types. lower case.
     questionType:{
         type: String,
-        required: [true, "No Question Type Specified."]
+        required: [true, "No Question Type Specified."],
+        default: "elaboration"
     },
     questionText: {
         type: String,
