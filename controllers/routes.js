@@ -22,11 +22,26 @@ router.get("/api/note/:id", function (req, res) {
         });
 });
 
-router.get("", function () { });
+// Creating a new note. Expects object as follows. All are optional and will default to empty string.
+/*
+req.body = {topic: string,
+            subtopic: string,
+            image_url: string,
+            summary: string,
+            externalAssets: array of strings
+           }
+*/
+router.post("/api/new/note", function (req, res) {
+    NotesPage.create(req.body, function (err, doc) {
+        if (err) {
+            console.log("New Note Error", err);
+            res.send(err);
+        } else {
+            res.json(doc);
+        }
+    });
+});
 
-router.get("", function () { });
-
-router.get("", function () { });
 
 // Serve Index on any route, SPA.
 router.get("*", function (req, res) {
