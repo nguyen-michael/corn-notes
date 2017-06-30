@@ -9,7 +9,7 @@ class TopBox extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col s12 m9 l10">
+                <div className="col s12 z-depth-2" style={styles.bigBox}>
                     <div className="row">
                         <form className="col s12">
                             <div className="row">
@@ -58,5 +58,11 @@ class TopBox extends Component {
         );
     }
 }
+
+const styles = {
+    bigBox: {
+        backgroundColor: "white"
+    }
+};
 
 module.exports = TopBox;

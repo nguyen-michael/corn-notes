@@ -9,7 +9,7 @@ class BottomBox extends Component {
     render() {
         return (
 
-            <div className="row">
+            <div className="col s12 z-depth-2" style={styles.bigBox}>
 
                 <div className="row">
                     <div className="col s3">
@@ -24,16 +24,23 @@ class BottomBox extends Component {
                         </div>
                     </div>
                     <div className="col s4">
-                        <div className="row center-align"><a className="waves-effect waves-light btn ">Submit</a></div>
+                        <div className="row center-align" style={styles.submitButton} ><a className="waves-effect waves-light btn ">Submit</a></div>
                         <div className="row center-align"><a className="waves-effect waves-light btn ">Download</a></div>
                     </div>
                 </div>
-
-            </div>
-
-
+            </div >
         );
     }
 }
+const styles = {
+    bigBox: {
+        backgroundColor: "white"
+    },
+    submitButton: {
+       
+     
+        margin: '25px'
+    }
+};
 
 module.exports = BottomBox;
