@@ -21,6 +21,10 @@
 
 - Create New Question: (needs note ID), Immediately assign to current note. Ideally, questions are created only when a notes page is active. Respond with question ID
 
-- Update Notes:
+- Update Note's fields:
 
-- Update Question:
+- Update Question's fields:
+
+- Add Question to Note:
+
+- Stretch: Deletions: Think about "cascading" middle ware.
