@@ -4,8 +4,8 @@ var router = express.Router();
 var path = require("path");
 
 // Database Models
-var NotesPage = require("../Models/NotesPage.js");
-var Questions = require("../Models/Questions.js");
+var NotesPage = require("../models/NotesPage.js");
+var Questions = require("../models/Questions.js");
 
 // Getting a single note and also updating view of current note. Populates the note with associated questions
 router.get("/api/note/:id", function (req, res) {

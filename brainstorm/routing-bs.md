@@ -3,9 +3,7 @@
 - __GET__ Get one Note by ID:
     - URL: 
         ```javascript
-        var url = "/api/note/:id"
-
-        const id = mongoose.types.ObjectId.str(req.params.id);
+        "/api/note/:id"
         ```
     - _Request_ URL will pass ID as string
     - use `mongoose.Types.ObjectId(str)` to convert to proper ID type
