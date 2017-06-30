@@ -77,8 +77,9 @@ router.post("/api/new/question", function (req, res) {
 */
 router.put("/api/update/note", function (req, res) {
     NotesPage.findByIdAndUpdate(
-        req.body._id, 
-        {$set: req.body},
+        req.body._id,
+        { $set: req.body },
+        { new: true },
         function (err, doc) {
             if (err) {
                 console.log("Update note error", err);
@@ -86,11 +87,57 @@ router.put("/api/update/note", function (req, res) {
             } else {
                 res.json(doc);
             }
-        });
+        }
+    );
 });
 
+// Update Question's fields. Expects the following request Body, all fields optional.
+/*
+req.body = {
+    "_id": string,
+    "questionType": string,
+    "questionText": string,
+    "answer": string
+           }
+*/
+router.put("/api/update/question", function (req, res) {
+    Questions.findByIdAndUpdate(
+        req.body._id,
+        { $set: req.body },
+        { new: true },
+        function (err, doc) {
+            if (err) {
+                console.log("Update question error", err);
+                res.send(err);
+            } else {
+                res.json(doc);
+            }
+        }
+    );
+});
 
-
+// Add Question to Note. Requires an initialized note and a question to be created. Usually to be called after creating a question
+/*
+req.body = {
+    noteId: string,
+    questionId: string
+} 
+*/
+router.put("/api/update/addQuestionToNote", function (req, res) {
+    NotesPage.findByIdAndUpdate(
+        req.body.noteId,
+        { $push: {"questions": req.body.questionId}},
+        { new: true },
+        function (err, doc) {
+            if (err) {
+                console.log("Add question to note error", err);
+                res.send(err);
+            } else {
+                res.json(doc);
+            }
+        }
+    )
+});
 
 // Serve Index on any route, SPA.
 router.get("*", function (req, res) {
