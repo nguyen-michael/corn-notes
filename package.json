@@ -7,6 +7,7 @@
   "author": "Kunkel Kyle, LaRou Tim, Nguyen Michael",
   "license": "Apache-2.0",
   "dependencies": {
+    "auth0-js": "^8.8.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongoose": "^4.10.8",

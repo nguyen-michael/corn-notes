@@ -11,7 +11,7 @@ class QABox extends Component {
     render() {
         return (
               <div className="row" id="elaboration-box" >
-                    <form className="col s12 z-depth-2"style={styles.bigBox}>
+                    <form className="col s12 z-depth-2" style={styles.bigBox}>
                         <div className="row center-align">
                             <h5>{this.props.boxName}
                                 <a className="btn-floating btn-large waves-effect waves-light red right ">
