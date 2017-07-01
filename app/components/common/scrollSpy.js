@@ -1,10 +1,21 @@
 import React, { Component } from "react";
+import ListElement from "./scrollSpyListElement";
 
 //can decide to pass in list elements to dynamically generate the side nav
 class ScrollSpy extends Component {
     constructor(props) {
 
         super(props);
+    }
+
+    renderList() {
+       
+        return this.props.listElements.map((listEl, index) => (
+            <div >
+                <ListElement elementID={listEl.id} name={listEl.name}
+                key={index}/>
+            </div>
+        ));
     }
 
     render() {
@@ -17,12 +28,7 @@ class ScrollSpy extends Component {
                         <div style={styles.listDivStyle}>
 
                             <ul className="section table-of-contents">
-                                <li><a href="#top-box">Title</a></li>
-                                <li><a href="#Elaboration">Elaboration</a></li>
-                                <li><a href="#Distinction">Distinction</a></li>
-                                <li><a href="#Relation">Relation</a></li>
-                                <li><a href="#Example">Example</a></li>
-                                <li><a href="#bottom-box">Summary</a></li>
+                              {this.renderList()}
                             </ul>
                         </div>
 

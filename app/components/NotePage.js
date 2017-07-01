@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SlideNav from './notePage/slideNav';
+import SlideNav from './common/slideNav';
 import TopBox from './notePage/topBox';
 import QABox from './notePage/QABox';
 import BottomBox from './notePage/bottomBox';
@@ -11,7 +11,11 @@ class NotePage extends Component {
         // boxes will need to connect to the DB
         super(props);
         this.state = {
-            boxes: ['Elaboration', 'Distinction', 'Relation', 'Example']
+            boxes: ['Elaboration', 'Distinction', 'Relation', 'Example'],
+            scrollSpyElements: [{ id: "top-box", name: "Title" }, { id: "Elaboration", name: "Elaboration" },
+             { id: "Distinction", name: "Distinction" }, { id: "Relation", name: "Relation" }
+            , { id: "Example", name: "Example" }, { id: "bottom-box", name: "Summary" }]
+
         };
 
     }
@@ -43,7 +47,7 @@ class NotePage extends Component {
                     </div>
                     <hr />
                 </div>
-                <ScrollsSpy />
+                   <ScrollsSpy listElements={this.state.scrollSpyElements}/>
             </div>
         );
     }
