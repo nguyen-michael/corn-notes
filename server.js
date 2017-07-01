@@ -1,10 +1,17 @@
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
+var React = require('react')
+var Router = require('react-router')
+var ReactDOMServer = require('react-dom/server')
+
 
 // Database set up and server routing
 var routes = require("./controllers/routes.js");
 var db = require("./controllers/connection.js");
+
+//react Routes for html
+var reactRoutes = require('./app/react-routes.js')
 
 // Setting port
 const port = process.env.PORT || 8080;
@@ -17,8 +24,18 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(routes);
+
+
+// for react-routes
+app.use(function(req, res, next) {
+  var router = Router.create({location: req.url, routes: reactRoutes})
+  router.run(function(Handler, state) {
+    var html = ReactDOMServer.renderToString(element) 
+    return res.render('react_page', {html: html})
+  })
+})
 
 // Confirm DB connection
 db.once("open", function () {
@@ -29,3 +46,6 @@ db.once("open", function () {
 app.listen(port, function () {
     console.log("Get Studyin', punk: Port ", port);
 });
+
+
+

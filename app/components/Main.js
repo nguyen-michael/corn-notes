@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import NotePage from './common/NotePage';
+import NotePage from './NotePage';
 import Footer from './common/footer'
 
 
