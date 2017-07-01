@@ -3,7 +3,7 @@ import SlideNav from './notePage/slideNav';
 import TopBox from './notePage/topBox';
 import QABox from './notePage/QABox';
 import BottomBox from './notePage/bottomBox';
-import ScrollsSpy from './scrollSpy';
+import ScrollsSpy from './common/scrollSpy';
 
 
 class NotePage extends Component {
