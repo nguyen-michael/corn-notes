@@ -1,73 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<!-- Place Holding. React Testing is below the Footer.-->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Wire Frame</title>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- creates the google tab icon -->
-    <link rel="icon" href="https://previews.123rf.com/images/tigatelu/tigatelu1311/tigatelu131100121/23848471-Cute-corn-cartoon-character-Stock-Vector-cob.jpg"
-        sizes="32x32">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- creates the google tab icon -->
+  <link rel="icon" href="https://previews.123rf.com/images/tigatelu/tigatelu1311/tigatelu131100121/23848471-Cute-corn-cartoon-character-Stock-Vector-cob.jpg"
+    sizes="32x32">
+  <title>React App</title>
 </head>
 <style>
-
- body {
+  body {
     background-image: url("hip-square.png");
     background-repeat: repeat;
-}
-        
-    
-    #relation-img {
-        max-height: 200px;
-        max-width: 200px;
-    }
-    /*body{background-color: black}*/
-
-    
-    .textShadow {
-        text-shadow: -.5px -.5px 0 #000,
-        .5px -.5px 0 #000,
-        -.5px .5px 0 #000,
-        .5px .5px 0 #000;
-    }
-
-    .input-box z-depth-2 {
-        /*box-sizing: border-box;
-        border: 2px solid gray;
-        border-radius: 5px;*/
-        padding: 10px;
-    }
+  }
 </style>
 
 <body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-    
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <!-- React Test-->
-
-    <div id="app"></div>
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
-    <script language="JavaScript">
-        // would need this for all textboxes according to docs, but seems to work without it
-        $(document).ready(function () {
-            // $('#kdelaboration-a"').val('New Text');
-            // $('#elaboration-a"').trigger('autoresize');
-            $('.scrollspy').scrollSpy();
-            $(".button-collapse").sideNav();
-        });
-    </script>
-    <script src="./bundle.js"></script>
-    <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
 </body>
 
 </html>

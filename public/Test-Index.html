@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Place Holding. React Testing is below the Footer.-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wire Frame</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- creates the google tab icon -->
+    <link rel="icon" href="https://previews.123rf.com/images/tigatelu/tigatelu1311/tigatelu131100121/23848471-Cute-corn-cartoon-character-Stock-Vector-cob.jpg"
+        sizes="32x32">
+</head>
+<style>
+
+ body {
+    background-image: url("hip-square.png");
+    background-repeat: repeat;
+}
+        
+    
+    #relation-img {
+        max-height: 200px;
+        max-width: 200px;
+    }
+    /*body{background-color: black}*/
+
+    
+    .textShadow {
+        text-shadow: -.5px -.5px 0 #000,
+        .5px -.5px 0 #000,
+        -.5px .5px 0 #000,
+        .5px .5px 0 #000;
+    }
+
+    .input-box z-depth-2 {
+        /*box-sizing: border-box;
+        border: 2px solid gray;
+        border-radius: 5px;*/
+        padding: 10px;
+    }
+</style>
+
+<body>
+
+    
+
+    <!-- React Test-->
+
+    <div id="app"></div>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script language="JavaScript">
+        // would need this for all textboxes according to docs, but seems to work without it
+        $(document).ready(function () {
+            // $('#kdelaboration-a"').val('New Text');
+            // $('#elaboration-a"').trigger('autoresize');
+            $('.scrollspy').scrollSpy();
+            $(".button-collapse").sideNav();
+        });
+    </script>
+    <script src="./bundle.js"></script>
+    <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
+</body>
+
+</html>
