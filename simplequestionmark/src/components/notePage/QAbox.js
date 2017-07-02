@@ -4,7 +4,7 @@ import React, {Component} from "react";
 
 class QABox extends Component {
     constructor(props) {
-        // Passes any props to the superclass, the constructor that generates this Main class. 
+        // Passes any props to the superclass, the constructor that generates this Main class.
         super(props);
     }
 
@@ -55,4 +55,4 @@ const styles = {
 };
 
 
-module.exports = QABox;
+export default QABox;
