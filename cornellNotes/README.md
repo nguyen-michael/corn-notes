@@ -1,5 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+
+# corn-notes
+Cornell Style Note taking application for educators and students
+
+PDF generation with client-side javascript?
+
+- https://github.com/MrRio/jsPDF
+
+#### Heroku
+- https://corn-notes.herokuapp.com/
+
+
+
+
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
