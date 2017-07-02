@@ -56,6 +56,7 @@ RESPONSE: (With all associated questions populated fully)
 ------
 
 POST: localhost:8080/api/new/note
+
 BODY: (All optional, will default to empty.)
 ``` json
 {
@@ -91,6 +92,7 @@ RESPONSE: (The full mongo document)
 ------
 
 POST: localhost:8080/api/new/question
+
 BODY: (All optional, will default to elaboration)
 ``` json
 {
@@ -115,6 +117,7 @@ RESPONSE: (full document)
 ------
 
 PUT: localhost:8080/api/update/note
+
 BODY: (Any are optional, will only update declared fields.)
 ``` json
 {
@@ -147,6 +150,7 @@ RESPONSE: (newly updated full document)
 ------
 
 PUT: localhost:8080/api/update/question
+
 BODY: (any are optional, will only update declared fields)
 ``` json
 {
@@ -171,6 +175,7 @@ RESPONSE:
 ------
 
 PUT: localhost:8080/api/update/addQuestionToNote
+
 BODY: (neither are optional)
 ``` json
 {
