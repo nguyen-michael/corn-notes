@@ -3,12 +3,13 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "auth0-js": "^8.8.0",
     "history": "^4.6.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10",
     "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "react-scripts": "1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",
