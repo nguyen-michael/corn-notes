@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect, Route, BrowserRouter, Switch } from 'react-router-dom';
-import App from './App';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+// import App from './App';
 // import Home from './Home/Home';
 import SplashPage from './components/SplashPage';
 import NotePage from './components/NotePage';

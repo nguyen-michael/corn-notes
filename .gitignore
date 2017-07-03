@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Auth0 Local Dev configuration
+src/Auth/auth-vars.js
