@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, BrowserRouter } from 'react-router-dom';
+import { Redirect, Route, BrowserRouter, Switch } from 'react-router-dom';
 import App from './App';
 // import Home from './Home/Home';
 import SplashPage from './components/SplashPage';
@@ -22,11 +22,12 @@ import history from './history';
 export const makeMainRoutes = () => {
     return (
         <BrowserRouter history={history} component={NotePage}>
-            <Route path="/" component={NotePage} >
-                <Route path="notePage" component={NotePage} />
-                <Route path="allNotes" component={AllNotes} />
-            </Route>
+            <Switch>
+                <Route exact path="/" component={SplashPage} />
+                <Route path="/notePage" component={NotePage} />
+                <Route path="/allNotes" component={AllNotes} />
 
+            </Switch>
         </BrowserRouter>
     );
 }
