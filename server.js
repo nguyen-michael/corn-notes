@@ -11,7 +11,7 @@ var routes = require("./controllers/routes.js");
 var db = require("./controllers/connection.js");
 
 //react Routes for html
-var reactRoutes = require('./app/react-routes.js')
+// var reactRoutes = require('./app/react-routes.js')
 
 // Setting port
 const port = process.env.PORT || 8080;
