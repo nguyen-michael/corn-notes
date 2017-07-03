@@ -7,9 +7,19 @@ class SplashPage extends Component {
         // boxes will need to connect to the DB
         super(props);
 
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+    }
+    login() {
+        this.props.auth.login();
+    }
+
+    logout() {
+        this.props.auth.logout();
     }
 
     render() {
+        const { isAuthenticated } = this.props.auth;
         return (
             <div>
                 <div className="parallax-container">
@@ -20,9 +30,34 @@ class SplashPage extends Component {
                     <div className="row container">
                         <h2 className="header">Corn Notes</h2>
                         <p className="grey-text text-darken-3 lighten-3">SomeStuff about corn notes and login</p>
-
-                        <Link to="/allNotes"><button className="btn btn-default">All Notes</button></Link>
-                        <Link to="/notePage"><button className="btn btn-default">Note Page</button></Link>
+                        {/* Conditional Rendering. Render the login button if not logged in.*/}
+                        {/* Renders the links to the proper pages and log out button when logged in. */}
+                        {
+                            isAuthenticated() && (
+                                <div>
+                                    <Link to="/allNotes"><button className="btn btn-default">All Notes</button></Link>
+                                    <Link to="/notePage"><button className="btn btn-default">Note Page</button></Link>
+                                    <button
+                                        className="btn btn-default"
+                                        onClick={this.logout}
+                                    >
+                                        Log Out
+                                    </button>
+                                </div>
+                            )
+                        }
+                        {
+                            !isAuthenticated() && (
+                                <div>
+                                    <button
+                                        className="btn btn-default"
+                                        onClick={this.login}
+                                    >
+                                        Log In
+                                    </button>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
                 <div className="parallax-container">
