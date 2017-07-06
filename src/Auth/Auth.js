@@ -1,8 +1,8 @@
 import history from '../history';
 import auth0 from 'auth0-js';
-// import { AUTH_CONFIG } from './auth-vars';
+import { AUTH_CONFIG } from './heroku-vars.js';
 
-// Heroku configuration mod: Removing the local file.
+// Heroku configuration mod: Removing the local file.Changing the pointer and allowing it to attempt to obtain process.env
 
 // Generally boilerplate for setting up the Auth0 class and methods.
 // There's many navigations to Home route, since it's treating it as a single page app.
@@ -11,9 +11,9 @@ import auth0 from 'auth0-js';
 export default class Auth {
   auth0 = new auth0.WebAuth({
     // Adding heroku support with process.env
-    domain: process.env.AUTH0_DOMAIN, // || AUTH_CONFIG.domain,
-    clientID: process.env.AUTH0_CLIENT_ID, // || AUTH_CONFIG.clientId,
-    redirectUri: process.env.AUTH0_CALLBACK_URL, // || AUTH_CONFIG.callbackUrl,
+    domain: process.env.AUTH0_DOMAIN || AUTH_CONFIG.domain,
+    clientID: process.env.AUTH0_CLIENT_ID || AUTH_CONFIG.clientId,
+    redirectUri: process.env.AUTH0_CALLBACK_URL || AUTH_CONFIG.callbackUrl,
     // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     audience: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
     responseType: 'token id_token',
