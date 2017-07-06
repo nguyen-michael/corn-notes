@@ -11,9 +11,9 @@ import auth0 from 'auth0-js';
 export default class Auth {
   auth0 = new auth0.WebAuth({
     // Adding heroku support with process.env
-    domain: process.env.AUTH0_DOMAIN || AUTH.domain,
-    clientID: process.env.AUTH0_CLIENT_ID || AUTH.clientId,
-    redirectUri: process.env.AUTH0_CALLBACK_URL || AUTH.callbackUrl,
+    domain: process.env.AUTH0_DOMAIN, // || AUTH.domain,
+    clientID: process.env.AUTH0_CLIENT_ID, // || AUTH.clientId,
+    redirectUri: process.env.AUTH0_CALLBACK_URL, // || AUTH.callbackUrl,
     // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     audience: `https://${AUTH.domain}/userinfo`,
     responseType: 'token id_token',
