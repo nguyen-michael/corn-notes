@@ -4,7 +4,9 @@ mongoose.Promise = Promise;
 
 // Setting connection URI for local context and deployment
 const connectURI = process.env.MONGODB_URI || "mongodb://localhost/cornnotes_local_dev";
-mongoose.connect(connectURI);
+mongoose.connect(connectURI, {
+    useMongoClient: true
+});
 
 // Connect to the db
 var db = mongoose.connection;
