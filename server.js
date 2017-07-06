@@ -38,6 +38,12 @@ app.use(routes);
 //   })
 // })
 
+// Get Heroku Config Variables to deploy to front end
+// This seems like a big security hole, buut....
+app.get("/heroku-config-var.js", function(req, res) {
+    res.send(`const AUTH = {domain:${process.env.AUTH0_DOMAIN}, clientID:${process.env.AUTH0_CLIENT_ID}, redirectUri:${process.env.AUTH0_CALLBACK_URL};`);
+});
+
 // Confirm DB connection
 db.once("open", function () {
     console.log("Database Connected!");

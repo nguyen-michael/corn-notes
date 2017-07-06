@@ -1,6 +1,6 @@
 import history from '../history';
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './heroku-vars.js';
+// import { AUTH_CONFIG } from './heroku-vars.js';
 
 // Heroku configuration mod: Removing the local file.Changing the pointer and allowing it to attempt to obtain process.env
 
@@ -11,11 +11,11 @@ import { AUTH_CONFIG } from './heroku-vars.js';
 export default class Auth {
   auth0 = new auth0.WebAuth({
     // Adding heroku support with process.env
-    domain: process.env.AUTH0_DOMAIN || AUTH_CONFIG.domain,
-    clientID: process.env.AUTH0_CLIENT_ID || AUTH_CONFIG.clientId,
-    redirectUri: process.env.AUTH0_CALLBACK_URL || AUTH_CONFIG.callbackUrl,
+    domain: process.env.AUTH0_DOMAIN || AUTH.domain,
+    clientID: process.env.AUTH0_CLIENT_ID || AUTH.clientId,
+    redirectUri: process.env.AUTH0_CALLBACK_URL || AUTH.callbackUrl,
     // audience: `https://${AUTH_CONFIG.domain}/userinfo`,
-    audience: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
+    audience: `https://${AUTH.domain}/userinfo`,
     responseType: 'token id_token',
     scope: 'openid'
   });
