@@ -1,9 +1,10 @@
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
-var React = require('react')
-var Router = require('react-router')
-var ReactDOMServer = require('react-dom/server')
+var React = require('react');
+var Router = require('react-router');
+var ReactDOMServer = require('react-dom/server');
+var path = require('path');
 
 
 // Database set up and server routing
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "/build")));
 app.use(routes);
 
 
