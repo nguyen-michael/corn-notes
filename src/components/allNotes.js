@@ -3,22 +3,39 @@ import SlideNav from './common/slideNav';
 import ScrollsSpy from './common/scrollSpy';
 import NoteCard from './allNotes/noteCard.js';
 import Footer from './common/footer'
-
+import API from '../utils/api';
 
 class AllNotes extends Component {
     constructor(props) {
         // need to create db pulls for all, recent, favorites
         super(props);
         this.state = {
-            scrollSpyElements: [{ id: "recent-box", name: "Recent Notes" }, { id: "favorite-box", name: "Favorite Notes" }, { id: "all-box", name: "All Notes" }]
+            scrollSpyElements: [{ id: "recent-box", name: "Recent Notes" }, { id: "favorite-box", name: "Favorite Notes" }, { id: "all-box", name: "All Notes" }],
+            userId: 1,
+            selected: false
+
         };
         this.login = this.login.bind(this);
+        this.addNewNote = this.addNewNote.bind(this);
+    }
+
+    //method to add a note to this user
+    addNewNote() {
+        API.createNewNote(this.state.userId).then(data => {
+            console.log(data);
+        });
+    }
+
+    selectNote() {
+        console.log("Hello");
     }
 
     // Method for log in button
     login() {
         this.props.auth.login();
     }
+
+    //method to populate to the ntoecard not attached
     renderRecentNoteCards() {
         return this.state.boxes.map(box => (
             <div >
@@ -52,6 +69,7 @@ class AllNotes extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
+        const { noteSelected } = this.state.selected;
         if (!isAuthenticated()) {
             return (
                 <div>
@@ -64,10 +82,17 @@ class AllNotes extends Component {
                     </button>
                 </div>
             );
-        } else if (isAuthenticated()) {
+        } else  if (isAuthenticated() && noteSelected) {
+            return (
+                <NotePage note={this.state.note} />
+            )
+        }
+         else  {
             return (
                 <div>
                     <div className='container'>
+                        <a className="btn-floating btn-large waves-effect waves-light red right" onClick={this.addNewNote}>
+                            <i className=" material-icons">note_add</i></a>
                         <SlideNav />
                         <div className="section scrollspy" id="recent-box">
                             <div className="align-center">
@@ -76,10 +101,6 @@ class AllNotes extends Component {
                             <hr />
                             <div className="row">
                                 <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-
                             </div>
 
 
@@ -90,9 +111,6 @@ class AllNotes extends Component {
                             </div>
                             <hr />
                             <div className="row">
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
                                 <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
 
                             </div>
@@ -106,18 +124,6 @@ class AllNotes extends Component {
 
                             <div className="row">
                                 <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
-
                             </div>
 
 
@@ -129,6 +135,7 @@ class AllNotes extends Component {
                 </div>
             );
         }
+        
     }
 }
 
