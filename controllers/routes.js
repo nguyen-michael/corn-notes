@@ -6,6 +6,22 @@ var path = require("path");
 // Database Models
 var NotesPage = require("../models/NotesPage.js");
 var Questions = require("../models/Questions.js");
+var User = require("../models/User.js");
+
+// Get a user and populate the notes It owns
+router.get("/api/user/:id", function (req, res) {
+    User
+        .findById(req.params.id)
+        .populate("notePages")
+        .exec(function (err, doc) {
+            if (err) {
+                console.log("User Retrieval Error", err);
+                res.send(err);
+            } else {
+                res.json(doc);
+            }
+        });
+});
 
 // Getting a single note and also updating view of current note. Populates the note with associated questions
 router.get("/api/note/:id", function (req, res) {
@@ -17,9 +33,26 @@ router.get("/api/note/:id", function (req, res) {
                 console.log("Notes Page Retrival Error", err);
                 res.send(err);
             } else {
-                res.json(doc)
+                res.json(doc);
             }
         });
+});
+
+// Creating a new User. Expects object as follows. Not optional, will throw error.
+/*
+req.body = {
+    "authID": String
+}
+*/
+router.post("/api/new/user", function (req, res) {
+    User.create(req.body, function (err, doc) {
+        if (err) {
+            console.log("New User Error", err);
+            res.send(err);
+        } else {
+            res.json(doc);
+        }
+    });
 });
 
 // Creating a new note. Expects object as follows. All are optional and will default to empty string.
@@ -126,11 +159,34 @@ req.body = {
 router.put("/api/update/addQuestionToNote", function (req, res) {
     NotesPage.findByIdAndUpdate(
         req.body.noteId,
-        { $push: {"questions": req.body.questionId}},
+        { $push: { "questions": req.body.questionId } },
         { new: true },
         function (err, doc) {
             if (err) {
                 console.log("Add question to note error", err);
+                res.send(err);
+            } else {
+                res.json(doc);
+            }
+        }
+    )
+});
+
+// Add Note to User
+/*
+req.body = {
+    userId: string,
+    noteId: string
+}
+*/
+router.put("/api/update/addNoteToUser", function (req, res) {
+    User.findByIdAndUpdate(
+        req.body.userId,
+        { $push: { "notePages": req.body.noteId } },
+        { new: true },
+        function (err, doc) {
+            if (err) {
+                console.log("Add notePage to user error", err);
                 res.send(err);
             } else {
                 res.json(doc);
