@@ -4,6 +4,7 @@ import TopBox from './notePage/topBox';
 import QAbox from './notePage/QAbox';
 import BottomBox from './notePage/bottomBox';
 import ScrollsSpy from './common/scrollSpy';
+import API from '../utils/api';
 
 
 class NotePage extends Component {
@@ -12,7 +13,6 @@ class NotePage extends Component {
         super(props);
         this.state = {
             boxes: [
-
                 {
                     type: "Elaboration",
                     questions:
@@ -38,14 +38,20 @@ class NotePage extends Component {
                     { question: "Can you even react brah?", answer: "No" }]
                 },
             ],
+            note: { question: "", answer: "" },
+
             scrollSpyElements: [{ id: "top-box", name: "Title" }, { id: "Elaboration", name: "Elaboration" },
             { id: "Distinction", name: "Distinction" }, { id: "Relation", name: "Relation" }
                 , { id: "Example", name: "Example" }, { id: "bottom-box", name: "Summary" }]
 
         };
+        API.findNote("595ee9c6fc1e95445bdaf2d1").then(note => {
+            console.log(note.data)
+            this.setState({ note: note.data })
+        });
 
         this.login = this.login.bind(this);
-        // this.addText = this.addText.bind(this);
+        this.renderQAbox = this.renderQAbox.bind(this);
     }
 
     // Method for log in button
@@ -53,17 +59,23 @@ class NotePage extends Component {
         this.props.auth.login();
     }
 
-    addText() {
-
-    }
-
+    // componentWillMount() {
+    //     API.findNote("595ee9c6fc1e95445bdaf2d1").then(note => {
+    //         console.log(note.data)
+    //         this.setState({ note: note.data })
+    //     });
+    // }
+    //should test to make sure all 4 elements are present, if not, add them
     renderQAbox() {
+        let noteData = this.state.note;
+        console.log("render data", noteData);
+
         return this.state.boxes.map(box => (
             <div className="section scrollspy" id={box.type}>
                 <QAbox
                     boxName={box.type}
                     key={box.type}
-                    data={box.questions}
+                    data={noteData}
                 />
             </div>
         ));
