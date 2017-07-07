@@ -7,6 +7,12 @@ var path = require("path");
 var NotesPage = require("../models/NotesPage.js");
 var Questions = require("../models/Questions.js");
 
+
+
+// Get a user and populate the notes It owns
+router.get("/api/user/:id", function (req, res) { });
+
+
 // Getting a single note and also updating view of current note. Populates the note with associated questions
 router.get("/api/note/:id", function (req, res) {
     NotesPage
@@ -21,6 +27,15 @@ router.get("/api/note/:id", function (req, res) {
             }
         });
 });
+
+// Creating a new User. Expects object as follows. Not optional, will throw error.
+/*
+req.body = {
+    "authID": String
+}
+*/
+
+router.post("/api/new/user", function (req, res) { });
 
 // Creating a new note. Expects object as follows. All are optional and will default to empty string.
 /*
@@ -126,7 +141,7 @@ req.body = {
 router.put("/api/update/addQuestionToNote", function (req, res) {
     NotesPage.findByIdAndUpdate(
         req.body.noteId,
-        { $push: {"questions": req.body.questionId}},
+        { $push: { "questions": req.body.questionId } },
         { new: true },
         function (err, doc) {
             if (err) {
@@ -138,6 +153,15 @@ router.put("/api/update/addQuestionToNote", function (req, res) {
         }
     )
 });
+
+// Add Note to User
+/*
+req.body = {
+    userId: string,
+    noteId: string
+}
+*/
+router.put("/api/update/addNoteToUser", function (req, res) { });
 
 // Serve Index on any route, SPA.
 router.get("*", function (req, res) {
