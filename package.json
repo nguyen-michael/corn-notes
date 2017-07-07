@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^8.8.0",
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "history": "^4.6.1",
     "mongoose": "^4.11.1",
