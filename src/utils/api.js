@@ -29,6 +29,21 @@ const API = {
     findNote: function (noteId) {
         console.log(noteId)
         return axios.get("/api/note/" + noteId)
+    },
+
+    // POST request to Auth0 API to get unique ID
+    getUniqueAuthId: function (accessToken) {
+        console.log("API.getUniqueId; accessToken", accessToken);
+
+        // Returning entire  axios object so promise methods can be applied on DOM
+        return axios({
+            method: "post",
+            url: "https://app71227637.auth0.com/userinfo",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`
+            }
+        });
     }
 
 };

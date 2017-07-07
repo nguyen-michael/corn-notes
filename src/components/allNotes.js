@@ -19,6 +19,13 @@ class AllNotes extends Component {
         };
         this.login = this.login.bind(this);
         this.addNewNote = this.addNewNote.bind(this);
+        this.getUniqueAuthId = this.getUniqueAuthId.bind(this);
+    }
+    // AUTH: Getting Unique ID
+    getUniqueAuthId() {
+        API.getUniqueAuthId(localStorage.getItem("access_token")).then(response => {
+            console.log(response);
+        });
     }
 
     //method to add a note to this user
@@ -91,7 +98,11 @@ class AllNotes extends Component {
         }
          else  {
             //  Adding test for localStorage retrival
-            console.log("Local Storage Access Token: ", localStorage.getItem("access_token"));
+            // var accessToken = localStorage.getItem("access_token");
+            // console.log("Local Storage Access Token: ", localStorage.getItem("access_token"));
+            // Running Method to test. Perhaps a good idea to refactor so that it will render ONLY after receiving the unique ID... Then ONLY AFTER receviing a user object.
+            this.getUniqueAuthId();
+
             return (
                 <div>
                     <div className='container'>
