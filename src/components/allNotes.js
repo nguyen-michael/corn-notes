@@ -3,6 +3,7 @@ import SlideNav from './common/slideNav';
 import ScrollsSpy from './common/scrollSpy';
 import NoteCard from './allNotes/noteCard.js';
 import Footer from './common/footer'
+import NotePage from './NotePage'
 import API from '../utils/api';
 
 class AllNotes extends Component {
@@ -12,22 +13,34 @@ class AllNotes extends Component {
         this.state = {
             scrollSpyElements: [{ id: "recent-box", name: "Recent Notes" }, { id: "favorite-box", name: "Favorite Notes" }, { id: "all-box", name: "All Notes" }],
             userId: 1,
-            selected: false
+            selected: false,
+            noteSelected: ""
 
         };
         this.login = this.login.bind(this);
         this.addNewNote = this.addNewNote.bind(this);
+        this.selectNote = this.selectNote.bind(this);
+        this.renderNotePage = this.renderNotePage.bind(this);
     }
 
     //method to add a note to this user
     addNewNote() {
         API.createNewNote(this.state.userId).then(data => {
-            console.log(data);
+            console.log("new note returns", data);
         });
     }
 
-    selectNote() {
-        console.log("Hello");
+//handle the note that was selected
+    selectNote(id) {
+        API.findNote(id).then(note => {
+            this.setState({
+                selected: true,
+                noteSelected: note.data
+            })
+           
+        })
+
+
     }
 
     // Method for log in button
@@ -56,6 +69,15 @@ class AllNotes extends Component {
         ));
     }
 
+
+// after a note is selected this will render the notepage for that note
+    renderNotePage() {
+
+        return (
+            <NotePage note={this.state.noteSelected} auth={this.props.auth} />
+        )
+    }
+
     renderFavNoteCards() {
         return this.state.boxes.map(box => (
             <div >
@@ -69,7 +91,8 @@ class AllNotes extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
-        const { noteSelected } = this.state.selected;
+        const noteSelected = this.state.selected;
+
         if (!isAuthenticated()) {
             return (
                 <div>
@@ -82,12 +105,16 @@ class AllNotes extends Component {
                     </button>
                 </div>
             );
-        } else  if (isAuthenticated() && noteSelected) {
+        } else if (isAuthenticated() && noteSelected) {
+            console.log("note PAge render")
             return (
-                <NotePage note={this.state.note} />
+                <div>
+                    {this.renderNotePage()}
+                </div>
             )
         }
-         else  {
+        else {
+            console.log("Render else stmt")
             return (
                 <div>
                     <div className='container'>
@@ -100,9 +127,8 @@ class AllNotes extends Component {
                             </div>
                             <hr />
                             <div className="row">
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
+                                <NoteCard selectNote={this.selectNote} noteId={"595ee9c6fc1e95445bdaf2d1"} header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
                             </div>
-
 
                         </div>
                         <div className="section scrollspy" id="favorite-box">
@@ -111,7 +137,6 @@ class AllNotes extends Component {
                             </div>
                             <hr />
                             <div className="row">
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
 
                             </div>
 
@@ -123,7 +148,6 @@ class AllNotes extends Component {
                             </div>
 
                             <div className="row">
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
                             </div>
 
 
@@ -135,7 +159,7 @@ class AllNotes extends Component {
                 </div>
             );
         }
-        
+
     }
 }
 

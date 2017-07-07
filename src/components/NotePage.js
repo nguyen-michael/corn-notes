@@ -11,44 +11,57 @@ class NotePage extends Component {
     constructor(props) {
         // boxes will need to connect to the DB
         super(props);
+
+        
+        let elaborationQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Elaboration");
+        });
+
+         let distinctionQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Distinction");
+        });
+
+         let relationQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Relation");
+        });
+
+         let exampleQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Example");
+        });
+        
+
+
         this.state = {
             boxes: [
                 {
                     type: "Elaboration",
-                    questions:
-                    [{ question: "Is anyone there?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: elaborationQuestions,
+                    noteId: this.props.note._id
                 },
                 {
                     type: "Distinction",
-                    questions:
-                    [{ question: "Distinct?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: distinctionQuestions,
+                    noteId: this.props.note._id
                 },
                 {
                     type: "Relation",
-                    questions:
-                    [{ question: "relation?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: relationQuestions,
+                    noteId: this.props.note._id
                 },
                 {
                     type: "Example",
-                    questions:
-                    [{ question: "Example?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: exampleQuestions,
+                    noteId: this.props.note._id
                 },
             ],
-            note: { question: "", answer: "" },
+
 
             scrollSpyElements: [{ id: "top-box", name: "Title" }, { id: "Elaboration", name: "Elaboration" },
             { id: "Distinction", name: "Distinction" }, { id: "Relation", name: "Relation" }
                 , { id: "Example", name: "Example" }, { id: "bottom-box", name: "Summary" }]
 
         };
-        API.findNote("595ee9c6fc1e95445bdaf2d1").then(note => {
-            console.log(note.data)
-            this.setState({ note: note.data })
-        });
+
 
         this.login = this.login.bind(this);
         this.renderQAbox = this.renderQAbox.bind(this);
@@ -67,22 +80,22 @@ class NotePage extends Component {
     // }
     //should test to make sure all 4 elements are present, if not, add them
     renderQAbox() {
-        let noteData = this.state.note;
-        console.log("render data", noteData);
 
+        console.log("boxes are", this.state.boxes)
         return this.state.boxes.map(box => (
             <div className="section scrollspy" id={box.type}>
                 <QAbox
                     boxName={box.type}
                     key={box.type}
-                    data={noteData}
+                    data={box.questions}
+                    noteId={box.noteId}
                 />
             </div>
         ));
     }
 
     render() {
-        // This is neat: it works and checks because Render is called every 'cycle'
+        // This is neat: it works and checks benodcause Render is called every 'cycle'
         const { isAuthenticated } = this.props.auth;
         // Conditional Rendering: Login Button if user not logged in
         // Otherwise app is shown.

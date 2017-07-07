@@ -14,12 +14,13 @@ class QABox extends Component {
     }
 
     addQuestion() {
+    
         API.newQuestion(this.props.boxName).then(newQuest => {
             let id = {
                 questionId: newQuest.data["_id"],
                 noteId: this.props.noteId
             }
-
+            console.log("this question id is", id)
             API.attachQuestionToNote(id);
 
         });
