@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import InputBox from './inputBox';
+import API from '../../utils/api';
+
 // add component for input fields
 // have a button add a new input field
 
@@ -7,15 +9,18 @@ class QABox extends Component {
 constructor(props) {
         // boxes will need to connect to the DB
         super(props);
-        this.state = {
-            questions: [{question:"Is anyone there?",answer:"No"},{question:"Can you even react brah?", answer:"No"}]
-        };
 
-    
-    }
+     this.addQuestion = this.addQuestion.bind(this);
+}
+
+addQuestion(){
+    console.log(this.props.boxName)
+    API.newQuestion(this.props.boxName);
+}
+
 
 renderInputFields() {
-        return this.state.questions.map(question => (
+        return this.props.data.map(question => (
               <div className="row center-align">
                             <div className="col s5">
                                 <InputBox title={"Question"} text={question.question}/>
@@ -33,7 +38,7 @@ renderInputFields() {
                     <form className="col s12 z-depth-2" style={styles.bigBox}>
                         <div className="row center-align">
                             <h5>{this.props.boxName}
-                                <a className="btn-floating btn-large waves-effect waves-light red right ">
+                                <a className="btn-floating btn-large waves-effect waves-light red right" onClick={this.addQuestion}>
                                     <i className=" material-icons">note_add</i></a>
                             </h5>
                             <hr/>

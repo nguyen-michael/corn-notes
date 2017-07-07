@@ -11,7 +11,33 @@ class NotePage extends Component {
         // boxes will need to connect to the DB
         super(props);
         this.state = {
-            boxes: ['Elaboration', 'Distinction', 'Relation', 'Example'],
+            boxes: [
+
+                {
+                    type: "Elaboration",
+                    questions:
+                    [{ question: "Is anyone there?", answer: "No" },
+                    { question: "Can you even react brah?", answer: "No" }]
+                },
+                {
+                    type: "Distinction",
+                    questions:
+                    [{ question: "Distinct?", answer: "No" },
+                    { question: "Can you even react brah?", answer: "No" }]
+                },
+                {
+                    type: "Relation",
+                    questions:
+                    [{ question: "relation?", answer: "No" },
+                    { question: "Can you even react brah?", answer: "No" }]
+                },
+                {
+                    type: "Example",
+                    questions:
+                    [{ question: "Example?", answer: "No" },
+                    { question: "Can you even react brah?", answer: "No" }]
+                },
+            ],
             scrollSpyElements: [{ id: "top-box", name: "Title" }, { id: "Elaboration", name: "Elaboration" },
             { id: "Distinction", name: "Distinction" }, { id: "Relation", name: "Relation" }
                 , { id: "Example", name: "Example" }, { id: "bottom-box", name: "Summary" }]
@@ -19,6 +45,7 @@ class NotePage extends Component {
         };
 
         this.login = this.login.bind(this);
+        // this.addText = this.addText.bind(this);
     }
 
     // Method for log in button
@@ -26,12 +53,17 @@ class NotePage extends Component {
         this.props.auth.login();
     }
 
+    addText() {
+
+    }
+
     renderQAbox() {
         return this.state.boxes.map(box => (
-            <div className="section scrollspy" id={box}>
+            <div className="section scrollspy" id={box.type}>
                 <QAbox
-                    boxName={box}
-                    key={box}
+                    boxName={box.type}
+                    key={box.type}
+                    data={box.questions}
                 />
             </div>
         ));

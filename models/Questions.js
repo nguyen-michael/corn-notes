@@ -18,7 +18,7 @@ const QuestionSchema = new Schema({
     },
     questionText: {
         type: String,
-        minlength: [1, "Please enter a question."]
+        default:""
     },
     answer: {
         type: String,
