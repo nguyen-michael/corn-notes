@@ -1,6 +1,7 @@
 // import mongoose, {Schema, model} from 'mongoose';
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema
+var Schema = mongoose.Schema;
+var findOrCreate = require("mongoose-find-or-create");
 
 const UserSchema = new Schema({
     createdAt: {
@@ -21,6 +22,9 @@ const UserSchema = new Schema({
         ref: "NotesPage"
     }]
 });
+
+// Adding in find or create functionality
+UserSchema.plugin(findOrCreate);
 
 var User = mongoose.model("User", UserSchema);
 
