@@ -39,15 +39,25 @@ router.get("/api/note/:id", function (req, res) {
 });
 
 // Creating a new User. Expects object as follows. Not optional, will throw error.
+// Will Also search for a user first. If they are found, they're returned, if not, they'll be created.
 /*
 req.body = {
     "authID": String
 }
 */
 router.post("/api/new/user", function (req, res) {
-    User.create(req.body, function (err, doc) {
+    // User.create(req.body, function (err, doc) {
+    //     if (err) {
+    //         console.log("New User Error", err);
+    //         res.send(err);
+    //     } else {
+    //         res.json(doc);
+    //     }
+    // });
+
+    User.findOrCreate(req.body, function (err, doc) {
         if (err) {
-            console.log("New User Error", err);
+            console.log("No User Found/ New user creation error", err);
             res.send(err);
         } else {
             res.json(doc);
