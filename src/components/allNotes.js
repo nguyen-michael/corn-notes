@@ -4,6 +4,8 @@ import ScrollsSpy from './common/scrollSpy';
 import NoteCard from './allNotes/noteCard.js';
 import Footer from './common/footer'
 import API from '../utils/api';
+// Added Note page to test
+import NotePage from './NotePage';
 
 class AllNotes extends Component {
     constructor(props) {
@@ -88,6 +90,8 @@ class AllNotes extends Component {
             )
         }
          else  {
+            //  Adding test for localStorage retrival
+            console.log("Local Storage Access Token: ", localStorage.getItem("access_token"));
             return (
                 <div>
                     <div className='container'>
