@@ -11,7 +11,7 @@ class AllNotes extends Component {
         // need to create db pulls for all, recent, favorites
         super(props);
         this.state = {
-            scrollSpyElements: [{ id: "recent-box", name: "Recent Notes" }, { id: "favorite-box", name: "Favorite Notes" }, { id: "all-box", name: "All Notes" }],
+            scrollSpyElements: [{ id: "recent-box", name: "Your Notes" }],
             userId: 1,
             selected: false,
 
@@ -85,7 +85,7 @@ class AllNotes extends Component {
                     header={note.topic}
                     summary={note.summary}
                     subheader={note.subtopic}
-                    cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"}
+                    cardImage={"/default-img.jpeg"}
                     selectNote={this.selectNote}
                 />
             ));
@@ -175,7 +175,7 @@ class AllNotes extends Component {
                         <SlideNav />
                         <div className="section scrollspy" id="recent-box">
                             <div className="align-center">
-                                <h2>Recent Notes</h2>
+                                <h2>Your Notes</h2>
                             </div>
                             <hr />
                             {/* We're gonna do test Rendering Here!*/}
@@ -184,32 +184,13 @@ class AllNotes extends Component {
                             </div>
 
                         </div>
-                        <div className="section scrollspy" id="favorite-box">
-                            <div className="align-center">
-                                <h2>Favorite Notes</h2>
-                            </div>
-                            <hr />
-                            <div className="row">
-
-                            </div>
-
-                        </div>
-                        <div className="section scrollspy" id="all-box">
-                            <div className="align-center">
-                                <h2>All Notes</h2>
-                                <hr />
-                            </div>
-
-                            <div className="row">
-                            </div>
 
 
-                        </div>
 
                     </div>
                     <ScrollsSpy listElements={this.state.scrollSpyElements} />
                     <Footer />
-                </div>
+                </div >
             );
         }
 

@@ -22,7 +22,7 @@ class NoteCard extends Component {
         return (
             <div className="col s6 m3 noteCard" onClick={this.handleClick}>
 
-                <div className="card ">
+                <div className="card " style={styles.noteStyle} >
                     <div className="card-image">
                         <img src={this.props.cardImage} />
                         <span className="card-title text-shadow">{this.props.header} - {this.props.subheader}</span>
@@ -39,5 +39,11 @@ class NoteCard extends Component {
     };
 }
 
+const styles = {
+    noteStyle: {
+        height: "300px"
+    }
+    
+};
 export default NoteCard;
 
