@@ -79,8 +79,21 @@ const API = {
             method: "get",
             url: `/api/user/${userID}`
         });
-    }
+    },
 
+    // PUT to /api/update/removeQuestionFromNotesPage
+    removeQuestionFromNotes: function (requestObj) {
+        console.log("API remove Question", requestObj);
+
+        return axios({
+           method: "put",
+           url: "/api/update/removeQuestionFromNotesPage",
+           data: {
+               "noteId": requestObj.noteId,
+               "questionId": requestObj.questionId
+           } 
+        });
+    }
 };
 
 export default API;
