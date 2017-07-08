@@ -205,6 +205,30 @@ router.put("/api/update/addNoteToUser", function (req, res) {
     )
 });
 
+// PUT route, remove a question from a Notes Page. Expects
+/*
+req.body = {
+    noteId: String,
+    questionId: string
+}
+Returns updated Notes Page ()
+*/
+router.put("/api/update/removeQuestionFromNotesPage", function (req, res) {
+    NotesPage.findByIdAndUpdate(
+        { "_id": req.body.noteId },
+        { $pull: { "questions": req.body.questionId } },
+        { new: true },
+        function (err, doc) {
+            if (err) {
+                console.log("Removing Question from Notes Error: ", err);
+                res.send(err);
+            } else {
+                res.json(doc);
+            }
+        }
+    )
+});
+
 // Serve Index on any route, SPA.
 router.get("*", function (req, res) {
     res.sendFile(path.resolve("./build/index.html"));
