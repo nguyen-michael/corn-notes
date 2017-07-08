@@ -159,7 +159,7 @@ class NotePage extends Component {
                         </div>
                         <hr />
                     </div>
-                    <ScrollsSpy listElements={this.state.scrollSpyElements} />
+                    <ScrollsSpy listElements={this.state.scrollSpyElements} auth={this.props.auth}/>
                 </div>
             );
         };

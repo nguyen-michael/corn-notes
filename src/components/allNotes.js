@@ -188,7 +188,7 @@ class AllNotes extends Component {
 
 
                     </div>
-                    <ScrollsSpy listElements={this.state.scrollSpyElements} />
+                    <ScrollsSpy listElements={this.state.scrollSpyElements} auth={this.props.auth} />
                     <Footer />
                 </div >
             );
