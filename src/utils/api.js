@@ -18,18 +18,18 @@ const API = {
 
     //attaches the new note to a user 
     //***** not finished yet */
-    attachNoteToUser: function (userID) {
-        return axios.post("/api/update/addNoteToUser", { "userId": userID });
+    attachNoteToUser: function (id) {
+        return axios.put("/api/update/addNoteToUser", id);
     },
 
- 
- // updates a question
+
+    // updates a question 
 
     updateQuestion: function (question) {
         return axios.put("/api/update/question", question);
     },
 
-    updateNote:function (note) {
+    updateNote: function (note) {
         return axios.put("/api/update/note", note);
     },
 
@@ -42,7 +42,7 @@ const API = {
     },
 
 
-     // POST request to Auth0 API to get unique ID
+    // POST request to Auth0 API to get unique ID
     getUniqueAuthId: function (accessToken) {
         console.log("API.getUniqueId; accessToken", accessToken);
 

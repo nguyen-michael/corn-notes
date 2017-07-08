@@ -26,8 +26,8 @@ class AllNotes extends Component {
         this.handleUserLogin = this.handleUserLogin.bind(this);
         this.renderNotes = this.renderNotes.bind(this);
         this.selectNote = this.selectNote.bind(this);
-        this.renderNotePage = this.renderNotePage.bind(this);    
-      
+        this.renderNotePage = this.renderNotePage.bind(this);
+
     }
 
     // Get all of the Info before rendering... if authenticated...
@@ -46,6 +46,7 @@ class AllNotes extends Component {
 
     // AUTH: Getting Unique ID
     handleUserLogin() {
+        console.log("handle log in called");
         API.getUniqueAuthId(localStorage.getItem("access_token"))
             .then(response => {
                 // Response.data.sub gets the Auth0 ID
@@ -60,7 +61,8 @@ class AllNotes extends Component {
                             .then(response => {
                                 const notesArray = response.data.notePages;
                                 console.log("Full user's NotesPages: ", notesArray);
-                                this.setState({ notesArray: notesArray });
+                                this.setState({ notesArray: notesArray, userId: userID });
+                                console.log("user id is", this.state.userId)
                             });
                     });
             });
@@ -79,10 +81,12 @@ class AllNotes extends Component {
             return this.state.notesArray.map(note => (
                 <NoteCard
                     key={note._id}
+                    noteId={note._id}
                     header={note.topic}
                     summary={note.summary}
                     subheader={note.subtopic}
                     cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"}
+                    selectNote={this.selectNote}
                 />
             ));
         }
@@ -90,14 +94,25 @@ class AllNotes extends Component {
 
     //method to add a note to this user
     addNewNote() {
+        console.log("adding new note")
         API.createNewNote(this.state.userId).then(data => {
-            console.log("new note returns", data);
+
+            API.attachNoteToUser({ userId: this.state.userId, noteId: data.data._id }).then(response => {
+                API.getFullUser(this.state.userId)
+                    .then(response => {
+                        const notesArray = response.data.notePages;
+                        console.log("Full user's NotesPages: ", notesArray);
+                        this.setState({ notesArray: notesArray });
+                        console.log("user id is", this.state.userId)
+                    });
+            })
         });
     }
 
     //handle the note that was selected
     selectNote(id) {
         API.findNote(id).then(note => {
+            console.log("selected note is", note)
             this.setState({
                 selected: true,
                 noteSelected: note.data
@@ -110,26 +125,7 @@ class AllNotes extends Component {
         this.props.auth.login();
     }
 
-    //method to populate to the ntoecard not attached
-    renderRecentNoteCards() {
-        return this.state.boxes.map(box => (
-            <div >
-                <NoteCard
 
-                />
-            </div>
-        ));
-    }
-
-    renderAllNoteCards() {
-        return this.state.boxes.map(box => (
-            <div >
-                <NoteCard
-
-                />
-            </div>
-        ));
-    }
 
 
     // after a note is selected this will render the notepage for that note
@@ -139,17 +135,6 @@ class AllNotes extends Component {
             <NotePage note={this.state.noteSelected} auth={this.props.auth} />
         )
     }
-
-    renderFavNoteCards() {
-        return this.state.boxes.map(box => (
-            <div >
-                <NoteCard
-
-                />
-            </div>
-        ));
-    }
-
 
     render() {
         const { isAuthenticated } = this.props.auth;

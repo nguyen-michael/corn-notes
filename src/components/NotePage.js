@@ -13,23 +13,28 @@ class NotePage extends Component {
         super(props);
 
         // Filters for each type of question to be sent to QA box property, which handles questions
-        let elaborationQuestions = this.props.note.questions.filter(function (el) {
-            return (el.questionType === "Elaboration");
-        });
+        let elaborationQuestions = []
+        let distinctionQuestions = []
+        let relationQuestions = []
+        let exampleQuestions = []
+        if (this.props.note.questions.length) {
+            elaborationQuestions = this.props.note.questions.filter(function (el) {
+                return (el.questionType === "Elaboration");
+            });
 
-        let distinctionQuestions = this.props.note.questions.filter(function (el) {
-            return (el.questionType === "Distinction");
-        });
+            distinctionQuestions = this.props.note.questions.filter(function (el) {
+                return (el.questionType === "Distinction");
+            });
 
-        let relationQuestions = this.props.note.questions.filter(function (el) {
-            return (el.questionType === "Relation");
-        });
+            relationQuestions = this.props.note.questions.filter(function (el) {
+                return (el.questionType === "Relation");
+            });
 
-        let exampleQuestions = this.props.note.questions.filter(function (el) {
-            return (el.questionType === "Example");
-        });
+            exampleQuestions = this.props.note.questions.filter(function (el) {
+                return (el.questionType === "Example");
+            });
 
-
+        }
 
         this.state = {
             note: {
@@ -102,7 +107,7 @@ class NotePage extends Component {
 
     //sends put call to api
     updateNote() {
-       
+
         API.updateNote(this.state.note);
     }
 

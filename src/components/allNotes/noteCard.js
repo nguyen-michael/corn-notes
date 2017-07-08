@@ -14,7 +14,7 @@ class NoteCard extends Component {
 
     handleClick() {
         this.props.selectNote(this.state.noteId);
-        // console.log("click", this.state.noteId)
+       
     }
 
     render() {
