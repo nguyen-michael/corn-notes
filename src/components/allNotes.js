@@ -19,13 +19,21 @@ class AllNotes extends Component {
         };
         this.login = this.login.bind(this);
         this.addNewNote = this.addNewNote.bind(this);
-        this.getUniqueAuthId = this.getUniqueAuthId.bind(this);
+        this.handleUserLogin = this.handleUserLogin.bind(this);
     }
     // AUTH: Getting Unique ID
-    getUniqueAuthId() {
-        API.getUniqueAuthId(localStorage.getItem("access_token")).then(response => {
-            console.log(response);
-        });
+    handleUserLogin() {
+        API.getUniqueAuthId(localStorage.getItem("access_token"))
+            .then(response => {
+                // Response.data.sub gets the Auth0 ID
+                const authID = response.data.sub;
+                console.log("Unique per User Auth0 ID: ", authID);
+                API.findOrCreateUser(authID)
+                    .then(response => {
+                        // After receiving the AuthID, find or create the User.
+                        console.log(response);
+                    });
+            });
     }
 
     //method to add a note to this user
@@ -91,17 +99,17 @@ class AllNotes extends Component {
                     </button>
                 </div>
             );
-        } else  if (isAuthenticated() && noteSelected) {
+        } else if (isAuthenticated() && noteSelected) {
             return (
                 <NotePage note={this.state.note} />
             )
         }
-         else  {
+        else {
             //  Adding test for localStorage retrival
             // var accessToken = localStorage.getItem("access_token");
             // console.log("Local Storage Access Token: ", localStorage.getItem("access_token"));
             // Running Method to test. Perhaps a good idea to refactor so that it will render ONLY after receiving the unique ID... Then ONLY AFTER receviing a user object.
-            this.getUniqueAuthId();
+            this.handleUserLogin();
 
             return (
                 <div>
@@ -150,7 +158,7 @@ class AllNotes extends Component {
                 </div>
             );
         }
-        
+
     }
 }
 

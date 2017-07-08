@@ -44,6 +44,19 @@ const API = {
                 "Authorization": `Bearer ${accessToken}`
             }
         });
+    },
+
+    // POST to /api/new/user, query expects authID
+    findOrCreateUser: function (authID) {
+        console.log("API.findOrCreateUser, authID: ", authID);
+
+        return axios({
+            method: "post",
+            url: "/api/new/user",
+            data: {
+                "authID": authID
+            }
+        });
     }
 
 };
