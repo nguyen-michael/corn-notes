@@ -11,47 +11,71 @@ class NotePage extends Component {
     constructor(props) {
         // boxes will need to connect to the DB
         super(props);
+
+        // Filters for each type of question to be sent to QA box property, which handles questions
+        let elaborationQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Elaboration");
+        });
+
+        let distinctionQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Distinction");
+        });
+
+        let relationQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Relation");
+        });
+
+        let exampleQuestions = this.props.note.questions.filter(function (el) {
+            return (el.questionType === "Example");
+        });
+
+
+
         this.state = {
+            note: {
+                _id: this.props.note._id,
+                topic: this.props.note.topic,
+                subtopic: this.props.note.subtopic,
+                image_url: this.props.note.image_url,
+                summary: this.props.note.summary
+            },
+
             boxes: [
                 {
                     type: "Elaboration",
-                    questions:
-                    [{ question: "Is anyone there?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: elaborationQuestions,
+                    noteId: this.props.note._id
                 },
                 {
                     type: "Distinction",
-                    questions:
-                    [{ question: "Distinct?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: distinctionQuestions,
+                    noteId: this.props.note._id
                 },
                 {
                     type: "Relation",
-                    questions:
-                    [{ question: "relation?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: relationQuestions,
+                    noteId: this.props.note._id
                 },
                 {
                     type: "Example",
-                    questions:
-                    [{ question: "Example?", answer: "No" },
-                    { question: "Can you even react brah?", answer: "No" }]
+                    questions: exampleQuestions,
+                    noteId: this.props.note._id
                 },
             ],
-            note: { question: "", answer: "" },
+
 
             scrollSpyElements: [{ id: "top-box", name: "Title" }, { id: "Elaboration", name: "Elaboration" },
             { id: "Distinction", name: "Distinction" }, { id: "Relation", name: "Relation" }
                 , { id: "Example", name: "Example" }, { id: "bottom-box", name: "Summary" }]
 
         };
-        API.findNote("595ee9c6fc1e95445bdaf2d1").then(note => {
-            console.log(note.data)
-            this.setState({ note: note.data })
-        });
+
 
         this.login = this.login.bind(this);
         this.renderQAbox = this.renderQAbox.bind(this);
+        this.updateTop = this.updateTop.bind(this);
+        this.updateBottom = this.updateBottom.bind(this);
+        this.updateNote = this.updateNote.bind(this);
     }
 
     // Method for log in button
@@ -59,30 +83,46 @@ class NotePage extends Component {
         this.props.auth.login();
     }
 
-    // componentWillMount() {
-    //     API.findNote("595ee9c6fc1e95445bdaf2d1").then(note => {
-    //         console.log(note.data)
-    //         this.setState({ note: note.data })
-    //     });
-    // }
-    //should test to make sure all 4 elements are present, if not, add them
+    //handles when bottom box elements are updated
+    updateBottom(summary) {
+
+        let updatedNote = this.state.note;
+        updatedNote.summary = summary;
+        this.setState({ note: updatedNote })
+    }
+
+    //handles when topbox elements are updated
+    updateTop(newTop) {
+        let updatedNote = this.state.note;
+        updatedNote.subtopic = newTop.subtopic;
+        updatedNote.topic = newTop.topic;
+        this.setState({ note: updatedNote })
+    }
+
+
+    //sends put call to api
+    updateNote() {
+       
+        API.updateNote(this.state.note);
+    }
+
+    // renders each box with props
     renderQAbox() {
-        let noteData = this.state.note;
-        console.log("render data", noteData);
 
         return this.state.boxes.map(box => (
             <div className="section scrollspy" id={box.type}>
                 <QAbox
                     boxName={box.type}
                     key={box.type}
-                    data={noteData}
+                    data={box.questions}
+                    noteId={box.noteId}
                 />
             </div>
         ));
     }
 
     render() {
-        // This is neat: it works and checks because Render is called every 'cycle'
+        // This is neat: it works and checks benodcause Render is called every 'cycle'
         const { isAuthenticated } = this.props.auth;
         // Conditional Rendering: Login Button if user not logged in
         // Otherwise app is shown.
@@ -104,13 +144,13 @@ class NotePage extends Component {
                     <div className='container'>
                         <SlideNav />
                         <div className="section scrollspy" id="top-box">
-                            <TopBox />
+                            <TopBox note={this.state.note} updateTop={this.updateTop} />
                         </div>
                         <hr />
                         {this.renderQAbox()}
                         <hr />
                         <div className="section scrollspy" id="bottom-box">
-                            <BottomBox />
+                            <BottomBox summary={this.state.note.summary} updateNote={this.updateNote} image_url={this.state.note.image_url} updateBottom={this.updateBottom} />
                         </div>
                         <hr />
                     </div>

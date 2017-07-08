@@ -22,6 +22,16 @@ const API = {
         return axios.post("/api/update/addNoteToUser", { "userId": userID });
     },
 
+ 
+ // updates a question
+
+    updateQuestion: function (question) {
+        return axios.put("/api/update/question", question);
+    },
+
+    updateNote:function (note) {
+        return axios.put("/api/update/note", note);
+    },
 
     //updates to a note
 
@@ -31,7 +41,8 @@ const API = {
         return axios.get("/api/note/" + noteId)
     },
 
-    // POST request to Auth0 API to get unique ID
+
+     // POST request to Auth0 API to get unique ID
     getUniqueAuthId: function (accessToken) {
         console.log("API.getUniqueId; accessToken", accessToken);
 
@@ -44,6 +55,7 @@ const API = {
                 "Authorization": `Bearer ${accessToken}`
             }
         });
+
     },
 
     // POST to /api/new/user, query expects authID

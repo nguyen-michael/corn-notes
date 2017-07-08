@@ -3,6 +3,7 @@ import SlideNav from './common/slideNav';
 import ScrollsSpy from './common/scrollSpy';
 import NoteCard from './allNotes/noteCard.js';
 import Footer from './common/footer'
+import NotePage from './NotePage'
 import API from '../utils/api';
 // Added Note page to test
 import NotePage from './NotePage';
@@ -15,13 +16,20 @@ class AllNotes extends Component {
             scrollSpyElements: [{ id: "recent-box", name: "Recent Notes" }, { id: "favorite-box", name: "Favorite Notes" }, { id: "all-box", name: "All Notes" }],
             userId: 1,
             selected: false,
-            notesArray: []
+
+            notesArray: [],
+
+            noteSelected: ""
+
 
         };
         this.login = this.login.bind(this);
         this.addNewNote = this.addNewNote.bind(this);
         this.handleUserLogin = this.handleUserLogin.bind(this);
         this.renderNotes = this.renderNotes.bind(this);
+        this.selectNote = this.selectNote.bind(this);
+        this.renderNotePage = this.renderNotePage.bind(this);    
+      
     }
 
     // Get all of the Info before rendering... if authenticated...
@@ -85,12 +93,18 @@ class AllNotes extends Component {
     //method to add a note to this user
     addNewNote() {
         API.createNewNote(this.state.userId).then(data => {
-            console.log(data);
+            console.log("new note returns", data);
         });
     }
 
-    selectNote() {
-        console.log("Hello");
+    //handle the note that was selected
+    selectNote(id) {
+        API.findNote(id).then(note => {
+            this.setState({
+                selected: true,
+                noteSelected: note.data
+            });
+        });
     }
 
     // Method for log in button
@@ -119,6 +133,15 @@ class AllNotes extends Component {
         ));
     }
 
+
+    // after a note is selected this will render the notepage for that note
+    renderNotePage() {
+
+        return (
+            <NotePage note={this.state.noteSelected} auth={this.props.auth} />
+        )
+    }
+
     renderFavNoteCards() {
         return this.state.boxes.map(box => (
             <div >
@@ -132,7 +155,8 @@ class AllNotes extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
-        const { noteSelected } = this.state.selected;
+        const noteSelected = this.state.selected;
+
         if (!isAuthenticated()) {
             return (
                 <div>
@@ -147,7 +171,9 @@ class AllNotes extends Component {
             );
         } else if (isAuthenticated() && noteSelected) {
             return (
-                <NotePage note={this.state.note} />
+                <div>
+                    {this.renderNotePage()}
+                </div>
             )
         }
         else {
@@ -174,7 +200,6 @@ class AllNotes extends Component {
                                 {this.renderNotes()}
                             </div>
 
-
                         </div>
                         <div className="section scrollspy" id="favorite-box">
                             <div className="align-center">
@@ -182,7 +207,6 @@ class AllNotes extends Component {
                             </div>
                             <hr />
                             <div className="row">
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
 
                             </div>
 
@@ -194,7 +218,6 @@ class AllNotes extends Component {
                             </div>
 
                             <div className="row">
-                                <NoteCard header={"Header"} summary={"Something witty and well written for this spot"} subheader={"SubHeader"} cardImage={"https://cdn-images-1.medium.com/max/1600/1*mwczhqPN-RbSEXPv-ChhWg.jpeg"} />
                             </div>
 
 

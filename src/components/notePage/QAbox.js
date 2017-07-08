@@ -10,10 +10,18 @@ class QABox extends Component {
         // boxes will need to connect to the DB
         super(props);
 
+        this.state = {
+            questions: this.props.data
+        }
+
         this.addQuestion = this.addQuestion.bind(this);
+        this.updateQuestionCall = this.updateQuestionCall.bind(this);
+        this.updateQuestionState = this.updateQuestionState.bind(this);
+
     }
 
     addQuestion() {
+
         API.newQuestion(this.props.boxName).then(newQuest => {
             let id = {
                 questionId: newQuest.data["_id"],
@@ -22,17 +30,47 @@ class QABox extends Component {
 
             API.attachQuestionToNote(id);
 
+            let updateQuestions = this.state.questions;
+            let newQuestion = { _id: id.questionId, questionText: "", answer: "" }
+            updateQuestions.push(newQuestion);
+            this.setState({ questions: updateQuestions })
+
         });
     }
 
+    //handles api for question updates
+    updateQuestionCall(question) {
+        API.updateQuestion(question);
+        console.log("API CALL FOR", question)
+    }
+    //handles when child element updates the question, then sends to API for update
+
+    updateQuestionState(id, type, change) {
+
+        let updatedQuestionArr = this.state.questions.filter(function (el) {
+            return (el._id == id);
+        });
+
+        let updatedQuestion = updatedQuestionArr[0]
+
+        if (type == "Question") {
+            updatedQuestion.questionText = change;
+
+        } else {
+            updatedQuestion.answer = change;
+        }
+        this.updateQuestionCall(updatedQuestion);
+    }
+
     renderInputFields() {
+        console.log(this.props.data);
         return this.props.data.map(question => (
             <div className="row center-align">
                 <div className="col s5">
-                    <InputBox title={"Question"} text={question.question} />
+                    <InputBox title={"Question"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.questionText} />
                 </div>
                 <div className="col s7">
-                    <InputBox title={"Answer"} text={question.answer} />
+                    <InputBox title={"Answer"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.answer} />
                 </div>
             </div>
         ));
