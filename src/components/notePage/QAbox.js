@@ -23,6 +23,13 @@ class QABox extends Component {
 
     }
 
+   componentDidMount() {
+        document.addEventListener("click", this.deleteQuestion);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("click", this.deleteQuestion);
+    }
     addQuestion() {
 
         API.newQuestion(this.props.boxName).then(newQuest => {
@@ -70,8 +77,8 @@ class QABox extends Component {
         this.updateQuestionCall(updatedQuestion);
     }
 
-    deleteQuestion(e, id) {
-        e.preventDefault();
+    deleteQuestion(id) {
+
         console.log("click, delete question, qid: ", id, "noteID: ", this.props.noteId);
         console.log("question state before", this.state.questions);
         API.removeQuestionFromNotes({ "questionId": id, "noteId": this.props.noteId })
@@ -80,17 +87,27 @@ class QABox extends Component {
                     .then(response => {
                         console.log("Note After Deletion of Question: ", response.data.questions);
                         // Questions array: Response.data.questions
-                        this.setState({ questions: response.data.questions });
-                        console.log("question state after", this.state.questions);
-                    });
+                        let filteredQuestions = [];
+                        let questionType = this.props.boxName;
+                        if (response.data.questions.length) {
+                            filteredQuestions = response.data.questions.filter(function (el) {
+                                return (el.questionType === questionType);
+                            });
+                        }
+                            this.setState({ questions: filteredQuestions });
+
+                            console.log("question state after", this.state.questions);
+                        });
             });
     }
+
+
 
     renderInputFields() {
 
         //if edit mode is enabled
         if (this.state.edit) {
-            return this.props.data.map(question => (
+            return this.state.questions.map(question => (
                 <div className="row center-align">
                     <div className="col s5">
                         <InputBox title={"Question"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.questionText} />
@@ -99,8 +116,8 @@ class QABox extends Component {
                         <InputBox title={"Answer"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.answer} />
                     </div>
                     <div className="col s2">
-                        <a className="btn-floating btn-large waves-effect waves-light red" onClick={(e) => this.deleteQuestion(e, question._id)}>
-                        {/*<a className="btn-floating btn-large waves-effect waves-light red" onClick={this.deleteQuestion(question._id)}>*/}
+                        <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.deleteQuestion.bind(this, question._id)}>
+                            {/*<a className="btn-floating btn-large waves-effect waves-light red" onClick={this.deleteQuestion(question._id)}>*/}
                             <i className=" material-icons">delete</i></a>
                     </div>
                 </div>
@@ -108,7 +125,7 @@ class QABox extends Component {
         }
 
         else {
-            return this.props.data.map(question => (
+            return this.state.questions.map(question => (
                 <div className="row center-align">
                     <div className="col s5">
                         <InputBox title={"Question"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.questionText} />
@@ -130,7 +147,7 @@ class QABox extends Component {
                             {/* Add Question Button */}
                             <a className="btn-floating btn-large waves-effect waves-light cyan right" onClick={this.addQuestion}>
                                 <i className=" material-icons">note_add</i></a>
-                                {/* Edit mode Button */}
+                            {/* Edit mode Button */}
                             <a className="btn-floating btn-large waves-effect waves-light red left" onClick={this.editMode}>
                                 <i className=" material-icons">delete</i></a>
                         </h5>
