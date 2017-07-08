@@ -57,6 +57,16 @@ const API = {
                 "authID": authID
             }
         });
+    },
+
+    // GET to /api/user/:id
+    getFullUser: function (userID) {
+        console.log("API.getFullUSer, user ID: ", userID);
+
+        return axios({
+            method: "get",
+            url: `/api/user/${userID}`
+        });
     }
 
 };
