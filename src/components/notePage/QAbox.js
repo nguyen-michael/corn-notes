@@ -17,7 +17,7 @@ class QABox extends Component {
         this.addQuestion = this.addQuestion.bind(this);
         this.updateQuestionCall = this.updateQuestionCall.bind(this);
         this.updateQuestionState = this.updateQuestionState.bind(this);
-        
+
     }
 
     addQuestion() {
@@ -27,13 +27,18 @@ class QABox extends Component {
                 questionId: newQuest.data["_id"],
                 noteId: this.props.noteId
             }
-            console.log("this question id is", id)
+
             API.attachQuestionToNote(id);
+
+            let updateQuestions = this.state.questions;
+            let newQuestion = { _id: id.questionId, questionText: "", answer: "" }
+            updateQuestions.push(newQuestion);
+            this.setState({ questions: updateQuestions })
 
         });
     }
 
-   //handles api for question updates
+    //handles api for question updates
     updateQuestionCall(question) {
         API.updateQuestion(question);
         console.log("API CALL FOR", question)
@@ -55,7 +60,7 @@ class QABox extends Component {
             updatedQuestion.answer = change;
         }
         this.updateQuestionCall(updatedQuestion);
-    } 
+    }
 
     renderInputFields() {
         console.log(this.props.data);

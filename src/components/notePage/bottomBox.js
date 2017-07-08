@@ -24,7 +24,7 @@ class BottomBox extends Component {
                         <div className="input-box z-depth-2">
                             <div className="input-field">
                                 <textarea id="summary" className="materialize-textarea" onChange={this.handleChange} >{this.props.summary}</textarea>
-                                <label htmlFor="summary">Summary</label>
+                                <label htmlFor="summary" className="active">Summary</label>
                             </div>
                         </div>
                     </div>

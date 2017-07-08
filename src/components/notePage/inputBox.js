@@ -23,7 +23,7 @@ class InputBox extends Component {
 
             <div className="input-field z-depth-1">
                 <textarea placeholder=" " id="elaboration" className="materialize-textarea" onChange={this.handleChange} >{this.props.text}</textarea>
-                <label htmlFor="elaboration">{this.props.title}</label>
+                <label htmlFor="elaboration" className="active">{this.props.title}</label>
             </div>
         );
     }

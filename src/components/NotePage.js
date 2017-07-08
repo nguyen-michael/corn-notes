@@ -87,7 +87,6 @@ class NotePage extends Component {
     updateBottom(summary) {
 
         let updatedNote = this.state.note;
-        console.log("old note", updatedNote);
         updatedNote.summary = summary;
         this.setState({ note: updatedNote })
     }
@@ -103,7 +102,7 @@ class NotePage extends Component {
 
     //sends put call to api
     updateNote() {
-        console.log("Update called")
+       
         API.updateNote(this.state.note);
     }
 
