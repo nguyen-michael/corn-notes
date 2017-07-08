@@ -11,12 +11,15 @@ class QABox extends Component {
         super(props);
 
         this.state = {
-            questions: this.props.data
+            questions: this.props.data,
+            edit: false
         }
 
         this.addQuestion = this.addQuestion.bind(this);
         this.updateQuestionCall = this.updateQuestionCall.bind(this);
         this.updateQuestionState = this.updateQuestionState.bind(this);
+        this.editMode = this.editMode.bind(this);
+        this.deleteQuestion = this.deleteQuestion.bind(this);
 
     }
 
@@ -36,6 +39,11 @@ class QABox extends Component {
             this.setState({ questions: updateQuestions })
 
         });
+    }
+
+    editMode() {
+        let updatedEdit = !this.state.edit;
+        this.setState({ edit: updatedEdit });
     }
 
     //handles api for question updates
@@ -62,18 +70,43 @@ class QABox extends Component {
         this.updateQuestionCall(updatedQuestion);
     }
 
+    deleteQuestion(e, id){
+        e.preventDefault();
+        console.log("click", id);
+    }
+
     renderInputFields() {
-        console.log(this.props.data);
-        return this.props.data.map(question => (
-            <div className="row center-align">
-                <div className="col s5">
-                    <InputBox title={"Question"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.questionText} />
+      
+        //if edit mode is enabled
+        if (this.state.edit) {
+            return this.props.data.map(question => (
+                <div className="row center-align">
+                    <div className="col s5">
+                        <InputBox title={"Question"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.questionText} />
+                    </div>
+                    <div className="col s5">
+                        <InputBox title={"Answer"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.answer} />
+                    </div>
+                    <div className="col s2">
+                        <a className="btn-floating btn-large waves-effect waves-light red" onClick={(e) => this.deleteQuestion(e, question._id)}>
+                            <i className=" material-icons">delete</i></a>
+                    </div>
                 </div>
-                <div className="col s7">
-                    <InputBox title={"Answer"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.answer} />
+            ));
+        }
+
+        else {
+            return this.props.data.map(question => (
+                <div className="row center-align">
+                    <div className="col s5">
+                        <InputBox title={"Question"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.questionText} />
+                    </div>
+                    <div className="col s7">
+                        <InputBox title={"Answer"} updateQuestion={this.updateQuestionState} id={question["_id"]} text={question.answer} />
+                    </div>
                 </div>
-            </div>
-        ));
+            ));
+        }
     }
 
     render() {
@@ -82,8 +115,10 @@ class QABox extends Component {
                 <form className="col s12 z-depth-2" style={styles.bigBox}>
                     <div className="row center-align">
                         <h5>{this.props.boxName}
-                            <a className="btn-floating btn-large waves-effect waves-light red right" onClick={this.addQuestion}>
+                            <a className="btn-floating btn-large waves-effect waves-light cyan right" onClick={this.addQuestion}>
                                 <i className=" material-icons">note_add</i></a>
+                            <a className="btn-floating btn-large waves-effect waves-light red left" onClick={this.editMode}>
+                                <i className=" material-icons">delete</i></a>
                         </h5>
                         <hr />
                     </div>

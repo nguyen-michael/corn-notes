@@ -22,7 +22,7 @@ const NotesPageSchema = new Schema({
     },
     image_url: {
         type: String,
-        default: ""
+        default: "/default-img.jpeg"
         // Can put a placeholder image here. 
     },
     summary: {
