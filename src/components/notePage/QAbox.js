@@ -35,7 +35,7 @@ class QABox extends Component {
 
    //handles api for question updates
     updateQuestionCall(question) {
-        API.updateQuestionPut(question);
+        API.updateQuestion(question);
         console.log("API CALL FOR", question)
     }
     //handles when child element updates the question, then sends to API for update

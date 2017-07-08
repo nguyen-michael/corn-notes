@@ -25,10 +25,13 @@ const API = {
  
  // updates a question
 
-    updateQuestionPut: function (question) {
+    updateQuestion: function (question) {
         return axios.put("/api/update/question", question);
     },
 
+    updateNote:function (note) {
+        return axios.put("/api/update/note", note);
+    },
 
     //updates to a note
 

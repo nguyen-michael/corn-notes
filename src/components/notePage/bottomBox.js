@@ -29,7 +29,7 @@ class BottomBox extends Component {
                         </div>
                     </div>
                     <div className="col s4">
-                        <div className="row center-align" style={styles.submitButton} ><a className="waves-effect waves-light btn ">Save</a></div>
+                        <div className="row center-align" style={styles.submitButton} ><a className="waves-effect waves-light btn " onClick={this.props.updateNote}>Save</a></div>
                         <div className="row center-align"><a className="waves-effect waves-light btn ">Download</a></div>
                     </div>
                 </div>

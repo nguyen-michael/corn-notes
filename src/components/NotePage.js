@@ -33,7 +33,7 @@ class NotePage extends Component {
 
         this.state = {
             note: {
-                noteId: this.props.note._id,
+                _id: this.props.note._id,
                 topic: this.props.note.topic,
                 subtopic: this.props.note.subtopic,
                 image_url: this.props.note.image_url,
@@ -75,6 +75,7 @@ class NotePage extends Component {
         this.renderQAbox = this.renderQAbox.bind(this);
         this.updateTop = this.updateTop.bind(this);
         this.updateBottom = this.updateBottom.bind(this);
+        this.updateNote = this.updateNote.bind(this);
     }
 
     // Method for log in button
@@ -100,6 +101,11 @@ class NotePage extends Component {
     }
 
 
+    //sends put call to api
+    updateNote() {
+        console.log("Update called")
+        API.updateNote(this.state.note);
+    }
 
     // renders each box with props
     renderQAbox() {
@@ -145,7 +151,7 @@ class NotePage extends Component {
                         {this.renderQAbox()}
                         <hr />
                         <div className="section scrollspy" id="bottom-box">
-                            <BottomBox summary={this.state.note.summary} image_url={this.state.note.image_url} updateBottom={this.updateBottom} />
+                            <BottomBox summary={this.state.note.summary} updateNote={this.updateNote} image_url={this.state.note.image_url} updateBottom={this.updateBottom} />
                         </div>
                         <hr />
                     </div>
