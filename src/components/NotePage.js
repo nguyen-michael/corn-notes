@@ -12,26 +12,34 @@ class NotePage extends Component {
         // boxes will need to connect to the DB
         super(props);
 
-        
+        // Filters for each type of question to be sent to QA box property, which handles questions
         let elaborationQuestions = this.props.note.questions.filter(function (el) {
             return (el.questionType === "Elaboration");
         });
 
-         let distinctionQuestions = this.props.note.questions.filter(function (el) {
+        let distinctionQuestions = this.props.note.questions.filter(function (el) {
             return (el.questionType === "Distinction");
         });
 
-         let relationQuestions = this.props.note.questions.filter(function (el) {
+        let relationQuestions = this.props.note.questions.filter(function (el) {
             return (el.questionType === "Relation");
         });
 
-         let exampleQuestions = this.props.note.questions.filter(function (el) {
+        let exampleQuestions = this.props.note.questions.filter(function (el) {
             return (el.questionType === "Example");
         });
-        
+
 
 
         this.state = {
+            note: {
+                noteId: this.props.note._id,
+                topic: this.props.note.topic,
+                subtopic: this.props.note.subtopic,
+                image_url: this.props.note.image_url,
+                summary: this.props.note.summary
+            },
+
             boxes: [
                 {
                     type: "Elaboration",
@@ -65,6 +73,8 @@ class NotePage extends Component {
 
         this.login = this.login.bind(this);
         this.renderQAbox = this.renderQAbox.bind(this);
+        this.updateTop = this.updateTop.bind(this);
+        this.updateBottom = this.updateBottom.bind(this);
     }
 
     // Method for log in button
@@ -72,16 +82,28 @@ class NotePage extends Component {
         this.props.auth.login();
     }
 
-    // componentWillMount() {
-    //     API.findNote("595ee9c6fc1e95445bdaf2d1").then(note => {
-    //         console.log(note.data)
-    //         this.setState({ note: note.data })
-    //     });
-    // }
-    //should test to make sure all 4 elements are present, if not, add them
+    //handles when bottom box elements are updated
+    updateBottom(summary) {
+
+        let updatedNote = this.state.note;
+        console.log("old note", updatedNote);
+        updatedNote.summary = summary;
+        this.setState({ note: updatedNote })
+    }
+
+    //handles when topbox elements are updated
+    updateTop(newTop) {
+        let updatedNote = this.state.note;
+        updatedNote.subtopic = newTop.subtopic;
+        updatedNote.topic = newTop.topic;
+        this.setState({ note: updatedNote })
+    }
+
+
+
+    // renders each box with props
     renderQAbox() {
 
-        console.log("boxes are", this.state.boxes)
         return this.state.boxes.map(box => (
             <div className="section scrollspy" id={box.type}>
                 <QAbox
@@ -117,13 +139,13 @@ class NotePage extends Component {
                     <div className='container'>
                         <SlideNav />
                         <div className="section scrollspy" id="top-box">
-                            <TopBox />
+                            <TopBox note={this.state.note} updateTop={this.updateTop} />
                         </div>
                         <hr />
                         {this.renderQAbox()}
                         <hr />
                         <div className="section scrollspy" id="bottom-box">
-                            <BottomBox />
+                            <BottomBox summary={this.state.note.summary} image_url={this.state.note.image_url} updateBottom={this.updateBottom} />
                         </div>
                         <hr />
                     </div>

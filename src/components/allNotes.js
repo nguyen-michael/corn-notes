@@ -21,6 +21,13 @@ class AllNotes extends Component {
         this.addNewNote = this.addNewNote.bind(this);
         this.selectNote = this.selectNote.bind(this);
         this.renderNotePage = this.renderNotePage.bind(this);
+        this.getUniqueAuthId = this.getUniqueAuthId.bind(this);
+    }
+
+    getUniqueAuthId() {
+        API.getUniqueAuthId(localStorage.getItem("access_token")).then(response => {
+            console.log(response);
+        });
     }
 
     //method to add a note to this user
@@ -30,14 +37,14 @@ class AllNotes extends Component {
         });
     }
 
-//handle the note that was selected
+    //handle the note that was selected
     selectNote(id) {
         API.findNote(id).then(note => {
             this.setState({
                 selected: true,
                 noteSelected: note.data
             })
-           
+
         })
 
 
@@ -70,7 +77,7 @@ class AllNotes extends Component {
     }
 
 
-// after a note is selected this will render the notepage for that note
+    // after a note is selected this will render the notepage for that note
     renderNotePage() {
 
         return (
@@ -106,7 +113,7 @@ class AllNotes extends Component {
                 </div>
             );
         } else if (isAuthenticated() && noteSelected) {
-            console.log("note PAge render")
+
             return (
                 <div>
                     {this.renderNotePage()}
@@ -114,7 +121,12 @@ class AllNotes extends Component {
             )
         }
         else {
-            console.log("Render else stmt")
+            //  Adding test for localStorage retrival
+            // var accessToken = localStorage.getItem("access_token");
+            // console.log("Local Storage Access Token: ", localStorage.getItem("access_token"));
+            // Running Method to test. Perhaps a good idea to refactor so that it will render ONLY after receiving the unique ID... Then ONLY AFTER receviing a user object.
+            this.getUniqueAuthId();
+            
             return (
                 <div>
                     <div className='container'>

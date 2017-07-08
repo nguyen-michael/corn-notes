@@ -25,6 +25,7 @@ export default class Auth {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    // this.setSession = this.setSession.bind(this);
   }
 
   login() {
@@ -47,10 +48,20 @@ export default class Auth {
   setSession(authResult) {
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    console.log(authResult.accessToken);
+    // console.log(authResult.accessToken);
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    /*
+      Testing of Setting Auth0 ID
+    */
+    // this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
+    //   if (err) {
+    //     console.log("Auth0.client error", err);
+    //   } else {
+    //     console.log("user", user);
+    //   }
+    // });
     // navigate to the home route
     history.replace('/');
   }
