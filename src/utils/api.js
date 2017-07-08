@@ -41,6 +41,7 @@ const API = {
         return axios.get("/api/note/" + noteId)
     },
 
+
      // POST request to Auth0 API to get unique ID
     getUniqueAuthId: function (accessToken) {
         console.log("API.getUniqueId; accessToken", accessToken);
@@ -53,6 +54,30 @@ const API = {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${accessToken}`
             }
+        });
+
+    },
+
+    // POST to /api/new/user, query expects authID
+    findOrCreateUser: function (authID) {
+        console.log("API.findOrCreateUser, authID: ", authID);
+
+        return axios({
+            method: "post",
+            url: "/api/new/user",
+            data: {
+                "authID": authID
+            }
+        });
+    },
+
+    // GET to /api/user/:id
+    getFullUser: function (userID) {
+        console.log("API.getFullUSer, user ID: ", userID);
+
+        return axios({
+            method: "get",
+            url: `/api/user/${userID}`
         });
     }
 
