@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import SlideNav from './common/slideNav';
 import ScrollsSpy from './common/scrollSpy';
 import NoteCard from './allNotes/noteCard.js';
-import Footer from './common/footer'
-import NotePage from './NotePage'
-import API from '../utils/api';
-// Added Note page to test
+import Footer from './common/footer';
 import NotePage from './NotePage';
+import API from '../utils/api';
 
 class AllNotes extends Component {
     constructor(props) {
