@@ -70,13 +70,24 @@ class QABox extends Component {
         this.updateQuestionCall(updatedQuestion);
     }
 
-    deleteQuestion(e, id){
+    deleteQuestion(e, id) {
         e.preventDefault();
-        console.log("click", id);
+        console.log("click, delete question, qid: ", id, "noteID: ", this.props.noteId);
+        console.log("question state before", this.state.questions);
+        API.removeQuestionFromNotes({ "questionId": id, "noteId": this.props.noteId })
+            .then(response => {
+                API.findNote(this.props.noteId)
+                    .then(response => {
+                        console.log("Note After Deletion of Question: ", response.data.questions);
+                        // Questions array: Response.data.questions
+                        this.setState({ questions: response.data.questions });
+                        console.log("question state after", this.state.questions);
+                    });
+            });
     }
 
     renderInputFields() {
-      
+
         //if edit mode is enabled
         if (this.state.edit) {
             return this.props.data.map(question => (
@@ -89,6 +100,7 @@ class QABox extends Component {
                     </div>
                     <div className="col s2">
                         <a className="btn-floating btn-large waves-effect waves-light red" onClick={(e) => this.deleteQuestion(e, question._id)}>
+                        {/*<a className="btn-floating btn-large waves-effect waves-light red" onClick={this.deleteQuestion(question._id)}>*/}
                             <i className=" material-icons">delete</i></a>
                     </div>
                 </div>
@@ -115,8 +127,10 @@ class QABox extends Component {
                 <form className="col s12 z-depth-2" style={styles.bigBox}>
                     <div className="row center-align">
                         <h5>{this.props.boxName}
+                            {/* Add Question Button */}
                             <a className="btn-floating btn-large waves-effect waves-light cyan right" onClick={this.addQuestion}>
                                 <i className=" material-icons">note_add</i></a>
+                                {/* Edit mode Button */}
                             <a className="btn-floating btn-large waves-effect waves-light red left" onClick={this.editMode}>
                                 <i className=" material-icons">delete</i></a>
                         </h5>
