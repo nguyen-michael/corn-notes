@@ -12,7 +12,7 @@ export default (props) => {
                 <div className="card small">
                     <div className="card-image">
                         <img src={this.prop.cardImage} />
-                        <span className="card-title text-shadow">{props.header} - {props.subheader}</span>
+                        <span className="card-title text-shadow z-depth-2">{props.header} - {props.subheader}</span>
                     </div>
                     <div className="card-content">
                         <p>{props.summary}</p>
