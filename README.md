@@ -1,9 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-
 # corn-notes
-Cornell Style Note taking application for educators and students
-
+Cornell Style Note taking application for educators and students. Create and save structured notes to the cloud. With authentication and note saving ability.
 
 #### Heroku
 - https://corn-notes.herokuapp.com/
